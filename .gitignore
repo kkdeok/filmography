@@ -1,0 +1,17 @@
+**/.idea
+*.iml
+**/.DS_Store
+**/.gradle
+**/build
+**/out
+gradlew.bat
+**/*.log
+**/*.log.*
+**/.project
+**/.classpath
+**/.settings
+**/bin
+metastore_db/
+venv/
+**/classes
+.env

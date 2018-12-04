@@ -1,4 +1,4 @@
-package com.doubleknd26.filmgoer.crawler;
+package com.doubleknd26.filmgoer.extract;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,12 +11,12 @@ import static org.junit.Assert.*;
 /**
  * Created by doubleknd26 on 02/12/2018.
  */
-public class FilmNameCrawlerTest {
-    private FilmNameCrawler crawler;
+public class FilmNameExtractorTest {
+    private FilmNameExtractor crawler;
 
     @Before
     public void setUp() throws Exception {
-        crawler = new FilmNameCrawler();
+        crawler = new FilmNameExtractor();
     }
 
     @Test

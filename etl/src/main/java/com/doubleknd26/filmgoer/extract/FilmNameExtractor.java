@@ -1,4 +1,4 @@
-package com.doubleknd26.filmgoer.crawler;
+package com.doubleknd26.filmgoer.extract;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  *
  * Created by doubleknd26 on 02/12/2018.
  */
-public class FilmNameCrawler implements Crawler {
+public class FilmNameExtractor implements Extractor {
     private static final List<String> URLS = ImmutableList.of(
             "https://movie.naver.com/movie/running/current.nhn");
     private static final String PREFIX = "관람";

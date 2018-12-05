@@ -11,7 +11,8 @@ import java.nio.file.Paths;
 /**
  * Created by doubleknd26 on 2018-12-04.
  */
-public class MiniDFSClusterWrapper extends MiniDFSCluster {
+public class MiniDFSClusterWrapper {
+    private MiniDFSCluster cluster;
     private Configuration conf;
     private File baseDir;
 
@@ -23,9 +24,21 @@ public class MiniDFSClusterWrapper extends MiniDFSCluster {
         MiniDFSCluster.Builder builder = new MiniDFSCluster.Builder(this.conf);
         builder.nameNodeHttpPort(50070);
         builder.numDataNodes(3);
-//        initMiniDFSCluster()
+        this.cluster = builder.build();
     }
 
+    public NameNode getNameNode() {
+        return cluster.getNameNode();
+    }
+
+    public void shutdown() {
+        cluster.shutdown();
+    }
+
+    /**
+     * Before create instance, need to create directory to use as a base dir of dfs.
+     * @return baseDir
+     */
     private File makeBaseDir() {
         final String path = Paths.get(".").toAbsolutePath().normalize().toString() + "/tmp";
         File baseDir = new File(path);
@@ -33,12 +46,5 @@ public class MiniDFSClusterWrapper extends MiniDFSCluster {
             baseDir.mkdir();
         }
         return baseDir;
-    }
-
-
-
-    @Override
-    public NameNode getNameNode() {
-        return cluster.getNameNode();
     }
 }

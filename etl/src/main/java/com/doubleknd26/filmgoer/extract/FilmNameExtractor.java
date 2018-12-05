@@ -1,12 +1,10 @@
 package com.doubleknd26.filmgoer.extract;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,18 +15,15 @@ import java.util.stream.Collectors;
  * Created by doubleknd26 on 02/12/2018.
  */
 public class FilmNameExtractor implements Extractor {
-    private static final List<String> URLS = ImmutableList.of(
-            "https://movie.naver.com/movie/running/current.nhn");
+    private static final String BASE_URL = "https://movie.naver.com/movie/running/current.nhn";
     private static final String PREFIX = "관람";
     private static final String POSTFIX = " 네티즌";
 
     @Override
-    public Set crawl() throws IOException {
+    public Set crawl() throws Exception {
         Set<String> runnings = Sets.newHashSet();
-        for (String url : URLS) {
-            Document doc = Jsoup.connect(url).get();
-            runnings.addAll(parse(doc));
-        }
+        Document doc = Jsoup.connect(BASE_URL).get();
+        runnings.addAll(parse(doc));
         return runnings;
     }
 

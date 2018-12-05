@@ -20,13 +20,13 @@ public class FilmNameExtractorTest {
     }
 
     @Test
-    public void crawl() throws Exception {
+    public void testCrawl() throws Exception {
         Set response = crawler.crawl();
         assertThat(response.isEmpty(), is(false));
     }
 
     @Test
-    public void typeCasting() throws Exception {
+    public void testTypeCasting() throws Exception {
         Set response = crawler.crawl();
         for (Object obj: response) {
             String result = obj instanceof String ? ((String) obj) : null;

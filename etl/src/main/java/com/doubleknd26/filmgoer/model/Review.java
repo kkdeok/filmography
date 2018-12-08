@@ -2,26 +2,75 @@ package com.doubleknd26.filmgoer.model;
 
 import com.doubleknd26.filmgoer.common.Source;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by doubleknd26 on 2018-12-05.
  */
-public class Review {
+public class Review implements Serializable {
     private Source source;
     private String url;
-    private String id;
-    private Date date;
+    private String title;
     private int grade;
     private String comment;
+    private long timestamp;
+    private String id;
 
-    public Review(Source source, String url, String id, Date date, int grade, String comment) {
+    public Review(Source source, String title, int grade, String comment, long timestamp, String id) {
         this.source = source;
-        this.url = url;
-        this.id = id;
-        this.date = date;
+        this.title = title;
         this.grade = grade;
         this.comment = comment;
+        this.timestamp = timestamp;
+        this.id = id;
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -29,10 +78,11 @@ public class Review {
         return "Review{" +
                 "source=" + source +
                 ", url='" + url + '\'' +
-                ", id='" + id + '\'' +
-                ", date=" + date +
+                ", title='" + title + '\'' +
                 ", grade=" + grade +
                 ", comment='" + comment + '\'' +
+                ", timestamp=" + timestamp +
+                ", id='" + id + '\'' +
                 '}';
     }
 }

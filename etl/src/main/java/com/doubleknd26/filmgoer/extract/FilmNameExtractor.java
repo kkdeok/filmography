@@ -3,10 +3,9 @@ package com.doubleknd26.filmgoer.extract;
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.IOException;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * This class crawls current running film name from NAVER movie web page.
@@ -16,24 +15,18 @@ import java.util.stream.Collectors;
  */
 public class FilmNameExtractor implements Extractor {
     private static final String BASE_URL = "https://movie.naver.com/movie/running/current.nhn";
-    private static final String PREFIX = "관람";
-    private static final String POSTFIX = " 네티즌";
 
     @Override
-    public Set crawl() throws Exception {
-        Set<String> runnings = Sets.newHashSet();
+    public Set<String> extract() throws Exception {
+        Set<String> runningFilmNames = Sets.newHashSet();
         Document doc = Jsoup.connect(BASE_URL).get();
-        runnings.addAll(parse(doc));
-        return runnings;
-    }
-
-    private Set<String> parse(Document doc) {
         Elements elements = doc.body()
                 .getElementsByClass("lst_detail_t1")
-                .select("li");
-        return elements.stream().map(ele -> ele.text()
-                .substring(ele.text().indexOf(PREFIX) + 4, ele.text().indexOf(POSTFIX))
-                .replaceFirst(" ", ""))
-                .collect(Collectors.toSet());
+                .select("li");;
+        for (Element element: elements) {
+            String title = element.getElementsByClass("tit").select("a").text();
+            runningFilmNames.add(title);
+        }
+        return runningFilmNames;
     }
 }

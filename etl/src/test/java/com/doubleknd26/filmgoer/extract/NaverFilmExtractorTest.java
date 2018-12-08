@@ -1,10 +1,23 @@
 package com.doubleknd26.filmgoer.extract;
 
 import com.doubleknd26.filmgoer.model.Review;
-import com.google.common.collect.Lists;
+import org.apache.commons.collections.IteratorUtils;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.rdd.RDD;
+import org.apache.spark.sql.*;
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.StructField;
+import org.apache.spark.sql.types.StructType;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -15,14 +28,12 @@ public class NaverFilmExtractorTest {
 
     @Before
     public void setUp() throws Exception {
-        extractor = new NaverFilmExtractor(Lists.newArrayList("도어락"));
+        this.extractor = new NaverFilmExtractor(1);
     }
 
     @Test
-    public void testCrawl() throws Exception {
-        for (Object obj: extractor.crawl()) {
-            Review review = (Review) obj;
-            System.out.println(review.toString());
-        }
+    public void testExtract() throws Exception {
+        Set<Review> response = extractor.extract();
+        assertThat(response.isEmpty(), is(false));
     }
 }

@@ -20,14 +20,14 @@ public class FilmNameExtractorTest {
     }
 
     @Test
-    public void testCrawl() throws Exception {
-        Set response = crawler.crawl();
+    public void testExtract() throws Exception {
+        Set response = crawler.extract();
         assertThat(response.isEmpty(), is(false));
     }
 
     @Test
     public void testTypeCasting() throws Exception {
-        Set response = crawler.crawl();
+        Set response = crawler.extract();
         for (Object obj: response) {
             String result = obj instanceof String ? ((String) obj) : null;
             assertThat(result == null || result.isEmpty(), is(false));
@@ -36,7 +36,7 @@ public class FilmNameExtractorTest {
 
     @Test
     public void parse() throws Exception {
-        Set response = crawler.crawl();
+        Set response = crawler.extract();
         for (Object obj: response) {
             String result = (String) obj;
             assertThat(result.startsWith(" "), is(false));

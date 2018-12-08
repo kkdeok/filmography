@@ -1,8 +1,6 @@
-package com.doubleknd26.filmgoer;
+package com.doubleknd26.moving;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by doubleknd26 on 2018-12-08.

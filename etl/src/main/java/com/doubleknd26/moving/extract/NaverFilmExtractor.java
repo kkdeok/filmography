@@ -1,7 +1,7 @@
-package com.doubleknd26.filmgoer.extract;
+package com.doubleknd26.moving.extract;
 
-import com.doubleknd26.filmgoer.common.Source;
-import com.doubleknd26.filmgoer.model.Review;
+import com.doubleknd26.moving.common.Source;
+import com.doubleknd26.moving.model.Review;
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,4 +1,4 @@
-package com.doubleknd26.filmgoer.common;
+package com.doubleknd26.moving.common;
 
 import org.apache.hadoop.hdfs.server.namenode.NameNode;
 import org.junit.*;

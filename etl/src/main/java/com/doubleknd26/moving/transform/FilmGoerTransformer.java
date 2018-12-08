@@ -1,9 +1,8 @@
-package com.doubleknd26.filmgoer.transform;
+package com.doubleknd26.moving.transform;
 
-import com.doubleknd26.filmgoer.model.FilmInfo;
-import com.doubleknd26.filmgoer.model.Review;
+import com.doubleknd26.moving.model.FilmInfo;
+import com.doubleknd26.moving.model.Review;
 import com.google.common.collect.Lists;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;

@@ -1,3 +1,3 @@
-rootProject.name = 'filmgoer'
+rootProject.name = 'moving'
 include 'etl'
 

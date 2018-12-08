@@ -1,4 +1,4 @@
-package com.doubleknd26.filmgoer.model;
+package com.doubleknd26.moving.model;
 
 import org.apache.commons.collections.ListUtils;
 

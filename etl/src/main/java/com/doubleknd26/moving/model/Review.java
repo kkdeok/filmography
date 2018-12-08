@@ -1,6 +1,6 @@
-package com.doubleknd26.filmgoer.model;
+package com.doubleknd26.moving.model;
 
-import com.doubleknd26.filmgoer.common.Source;
+import com.doubleknd26.moving.common.Source;
 
 import java.io.Serializable;
 

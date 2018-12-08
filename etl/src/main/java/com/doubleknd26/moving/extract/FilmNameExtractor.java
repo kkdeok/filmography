@@ -1,4 +1,4 @@
-package com.doubleknd26.filmgoer.extract;
+package com.doubleknd26.moving.extract;
 
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;

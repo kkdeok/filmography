@@ -1,26 +1,21 @@
-package com.doubleknd26.filmgoer;
+package com.doubleknd26.moving;
 
 
-import com.doubleknd26.filmgoer.extract.Extractor;
-import com.doubleknd26.filmgoer.extract.FilmNameExtractor;
-import com.doubleknd26.filmgoer.extract.NaverFilmExtractor;
-import com.doubleknd26.filmgoer.model.FilmInfo;
-import com.doubleknd26.filmgoer.model.Review;
-import com.doubleknd26.filmgoer.transform.FilmGoerTransformer;
+import com.doubleknd26.moving.extract.Extractor;
+import com.doubleknd26.moving.extract.FilmNameExtractor;
+import com.doubleknd26.moving.extract.NaverFilmExtractor;
+import com.doubleknd26.moving.model.FilmInfo;
+import com.doubleknd26.moving.model.Review;
+import com.doubleknd26.moving.transform.FilmGoerTransformer;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.collections.IteratorUtils;
-import org.apache.commons.collections.SetUtils;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import scala.reflect.ClassTag;
 
-import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 
 /**
  * Created by doubleknd26 on 2018-12-08.

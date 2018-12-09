@@ -1,0 +1,42 @@
+group 'com.doubleknd26.moving.proto'
+version '1.0-SNAPSHOT'
+
+def grpcVersion = '1.17.0'
+def protoVersion = '3.0.0'
+
+apply plugin: 'com.google.protobuf'
+
+dependencies{
+    compile "io.grpc:grpc-netty:${grpcVersion}"
+    compile "io.grpc:grpc-protobuf:${grpcVersion}"
+    compile "io.grpc:grpc-stub:${grpcVersion}"
+    compile "com.google.protobuf:protobuf-java:${protoVersion}"
+}
+
+// reference 1) https://github.com/google/protobuf-gradle-plugin
+// reference 2) https://stackoverflow.com/questions/32820728/simple-protobuf-compilation-with-gradle
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/proto'
+        }
+        java {
+            // include self written and generated code
+            srcDirs 'src/main/java'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protoVersion}"
+    }
+    generateProtoTasks.generatedFilesBaseDir = 'src'
+    generateProtoTasks {
+        // all() returns the collection of all protoc tasks
+        all().each { task ->
+            // Here you can configure the task
+        }
+        ofSourceSet('main')
+    }
+}

@@ -1,15 +1,8 @@
 group 'com.doubleknd26.moving.indexer'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
+    compile project(':proto')
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.8'
 

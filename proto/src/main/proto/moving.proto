@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.doubleknd26.moving.proto";
+
+/* This type is about the sources that extract data what we need. */
+enum SourceType {
+    NAVER = 0;
+}
+
+message Review {
+    SourceType sourceType = 1;
+    string url = 2;
+    string title = 3;
+    int32 grade = 4;
+    string comment = 5;
+    int64 timestamp = 6;
+}
+
+message MovieInfo {
+    string title = 1;
+    string director = 2;
+    repeated string starring = 3;
+    repeated string genre = 4;
+    double grade = 5;
+    int64 release_time = 6;
+    repeated Review reviews = 7;
+}

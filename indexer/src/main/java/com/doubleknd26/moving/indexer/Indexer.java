@@ -4,9 +4,9 @@ package com.doubleknd26.moving.indexer;
 import com.doubleknd26.moving.indexer.extract.Extractor;
 import com.doubleknd26.moving.indexer.extract.MovieNameExtractor;
 import com.doubleknd26.moving.indexer.extract.NaverMovieExtractor;
-import com.doubleknd26.moving.indexer.model.FilmInfo;
-import com.doubleknd26.moving.indexer.model.Review;
 import com.doubleknd26.moving.indexer.transform.Transformer;
+import com.doubleknd26.moving.proto.MovieInfo;
+import com.doubleknd26.moving.proto.Review;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.spark.api.java.JavaRDD;
@@ -45,8 +45,8 @@ public class Indexer {
         JavaRDD<Review> reviewRdd = getReviewRdd();
 
         Transformer transformer = new Transformer(filmNames, reviewRdd);
-        JavaRDD<FilmInfo> transformed = transformer.transform();
-        transformed.saveAsTextFile("/pang/wow.txt");
+//        JavaRDD<MovieInfo> transformed = transformer.transform();
+//        transformed.saveAsTextFile("/pang/wow.txt");
     }
 
     private Broadcast<Set<String>> getFilmNames() throws Exception {

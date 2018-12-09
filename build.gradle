@@ -5,10 +5,28 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+
+        mavenLocal()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+subprojects {
+    apply plugin: 'java'
+    compileJava {options.encoding = "UTF-8"}
+
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
 }

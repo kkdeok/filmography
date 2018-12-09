@@ -1,6 +1,6 @@
 package com.doubleknd26.moving.indexer.extract;
 
-import com.doubleknd26.moving.indexer.model.Review;
+import com.doubleknd26.moving.proto.Review;
 import org.junit.Before;
 import org.junit.Test;
 

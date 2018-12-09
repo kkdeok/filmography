@@ -1,3 +1,4 @@
 rootProject.name = 'moving'
 include 'indexer'
+include 'proto'
 

@@ -1,7 +1,7 @@
 package com.doubleknd26.moving.indexer.extract;
 
-import com.doubleknd26.moving.indexer.common.Source;
-import com.doubleknd26.moving.indexer.model.Review;
+import com.doubleknd26.moving.proto.Review;
+import com.doubleknd26.moving.proto.SourceType;
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -46,8 +46,7 @@ public class NaverMovieExtractor implements Extractor {
                     .select("tbody")
                     .select("tr");
             for (Element element: elements) {
-                Review review = parse(element);
-                review.setUrl(url);
+                Review review = parse(element).setUrl(url).build();
                 reviews.add(review);
             }
         }
@@ -77,7 +76,7 @@ public class NaverMovieExtractor implements Extractor {
      * @return
      * @throws ParseException
      */
-    private Review parse (Element element) throws ParseException {
+    private Review.Builder parse (Element element) throws ParseException {
         // grade
         int grade = Integer.parseInt(element.getElementsByClass("point").text());
         // title
@@ -93,6 +92,11 @@ public class NaverMovieExtractor implements Extractor {
         String date = element.getElementsByClass("num").html();
         date = date.substring(date.indexOf("<br>") + 4);
         long timestamp = formatter.parse(date).toInstant().getEpochSecond();
-        return new Review(Source.NAVER, title, grade, comment, timestamp, id);
+        return Review.newBuilder()
+                .setSourceType(SourceType.NAVER)
+                .setTitle(title)
+                .setGrade(grade)
+                .setComment(comment)
+                .setTimestamp(timestamp);
     }
 }

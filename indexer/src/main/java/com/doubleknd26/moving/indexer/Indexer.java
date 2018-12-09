@@ -1,11 +1,9 @@
 package com.doubleknd26.moving.indexer;
 
 
-import com.doubleknd26.moving.indexer.extract.Extractor;
-import com.doubleknd26.moving.indexer.extract.MovieNameExtractor;
-import com.doubleknd26.moving.indexer.extract.NaverMovieExtractor;
-import com.doubleknd26.moving.indexer.transform.Transformer;
-import com.doubleknd26.moving.proto.MovieInfo;
+import com.doubleknd26.moving.indexer.crawl.Crawler;
+import com.doubleknd26.moving.indexer.crawl.MovieNameCrawler;
+import com.doubleknd26.moving.indexer.crawl.NaverMovieCrawler;
 import com.doubleknd26.moving.proto.Review;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.collections.IteratorUtils;
@@ -23,8 +21,8 @@ import java.util.Set;
 public class Indexer {
     private SparkSession ss;
     private JavaSparkContext jsc;
-    private static final ImmutableList<Extractor> list = ImmutableList.<Extractor>builder()
-            .add(new NaverMovieExtractor())
+    private static final ImmutableList<Crawler> list = ImmutableList.<Crawler>builder()
+            .add(new NaverMovieCrawler())
             .build();
 
     public Indexer() {
@@ -41,28 +39,27 @@ public class Indexer {
     }
 
     public void run() throws Exception {
-        Broadcast<Set<String>> filmNames = getFilmNames();
+        Broadcast<Set<String>> titles = getRunningTitles();
         JavaRDD<Review> reviewRdd = getReviewRdd();
 
-        Transformer transformer = new Transformer(filmNames, reviewRdd);
 //        JavaRDD<MovieInfo> transformed = transformer.transform();
 //        transformed.saveAsTextFile("/pang/wow.txt");
     }
 
-    private Broadcast<Set<String>> getFilmNames() throws Exception {
-        MovieNameExtractor movieNameExtractor = new MovieNameExtractor();
+    private Broadcast<Set<String>> getRunningTitles() throws Exception {
+        MovieNameCrawler movieNameCrawler = new MovieNameCrawler();
         ClassTag<Set<String>> classTag = scala
                 .reflect
                 .ClassTag$
                 .MODULE$
                 .apply(Set.class);
-        return ss.sparkContext().broadcast(movieNameExtractor.extract(), classTag);
+        return ss.sparkContext().broadcast(movieNameCrawler.crawl(), classTag);
     }
 
     private JavaRDD<Review> getReviewRdd() throws Exception {
         JavaRDD<Review> reviewRdd = null;
-        for (Extractor extractor: list) {
-            Set reviews = extractor.extract();
+        for (Crawler crawler : list) {
+            Set reviews = crawler.crawl();
             if (reviewRdd == null) {
                 reviewRdd = jsc.parallelize(IteratorUtils.toList(reviews.iterator()));
             } else {

@@ -10,6 +10,7 @@ public  final class MovieInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:MovieInfo)
     MovieInfoOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use MovieInfo.newBuilder() to construct.
   private MovieInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,14 +28,19 @@ public  final class MovieInfo extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private MovieInfo(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -43,12 +49,6 @@ public  final class MovieInfo extends
           case 0:
             done = true;
             break;
-          default: {
-            if (!input.skipField(tag)) {
-              done = true;
-            }
-            break;
-          }
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
@@ -98,6 +98,13 @@ public  final class MovieInfo extends
                 input.readMessage(com.doubleknd26.moving.proto.Review.parser(), extensionRegistry));
             break;
           }
+          default: {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
+              done = true;
+            }
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -115,6 +122,7 @@ public  final class MovieInfo extends
       if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
         reviews_ = java.util.Collections.unmodifiableList(reviews_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -123,6 +131,7 @@ public  final class MovieInfo extends
     return com.doubleknd26.moving.proto.Moving.internal_static_MovieInfo_descriptor;
   }
 
+  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return com.doubleknd26.moving.proto.Moving.internal_static_MovieInfo_fieldAccessorTable
@@ -134,7 +143,7 @@ public  final class MovieInfo extends
   public static final int TITLE_FIELD_NUMBER = 1;
   private volatile java.lang.Object title_;
   /**
-   * <code>optional string title = 1;</code>
+   * <code>string title = 1;</code>
    */
   public java.lang.String getTitle() {
     java.lang.Object ref = title_;
@@ -149,7 +158,7 @@ public  final class MovieInfo extends
     }
   }
   /**
-   * <code>optional string title = 1;</code>
+   * <code>string title = 1;</code>
    */
   public com.google.protobuf.ByteString
       getTitleBytes() {
@@ -168,7 +177,7 @@ public  final class MovieInfo extends
   public static final int DIRECTOR_FIELD_NUMBER = 2;
   private volatile java.lang.Object director_;
   /**
-   * <code>optional string director = 2;</code>
+   * <code>string director = 2;</code>
    */
   public java.lang.String getDirector() {
     java.lang.Object ref = director_;
@@ -183,7 +192,7 @@ public  final class MovieInfo extends
     }
   }
   /**
-   * <code>optional string director = 2;</code>
+   * <code>string director = 2;</code>
    */
   public com.google.protobuf.ByteString
       getDirectorBytes() {
@@ -260,7 +269,7 @@ public  final class MovieInfo extends
   public static final int GRADE_FIELD_NUMBER = 5;
   private double grade_;
   /**
-   * <code>optional double grade = 5;</code>
+   * <code>double grade = 5;</code>
    */
   public double getGrade() {
     return grade_;
@@ -269,7 +278,7 @@ public  final class MovieInfo extends
   public static final int RELEASE_TIME_FIELD_NUMBER = 6;
   private long releaseTime_;
   /**
-   * <code>optional int64 release_time = 6;</code>
+   * <code>int64 release_time = 6;</code>
    */
   public long getReleaseTime() {
     return releaseTime_;
@@ -311,6 +320,7 @@ public  final class MovieInfo extends
   }
 
   private byte memoizedIsInitialized = -1;
+  @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -320,6 +330,7 @@ public  final class MovieInfo extends
     return true;
   }
 
+  @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (!getTitleBytes().isEmpty()) {
@@ -343,8 +354,10 @@ public  final class MovieInfo extends
     for (int i = 0; i < reviews_.size(); i++) {
       output.writeMessage(7, reviews_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
+  @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -384,11 +397,11 @@ public  final class MovieInfo extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, reviews_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -416,6 +429,7 @@ public  final class MovieInfo extends
         == other.getReleaseTime());
     result = result && getReviewsList()
         .equals(other.getReviewsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -425,7 +439,7 @@ public  final class MovieInfo extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TITLE_FIELD_NUMBER;
     hash = (53 * hash) + getTitle().hashCode();
     hash = (37 * hash) + DIRECTOR_FIELD_NUMBER;
@@ -453,6 +467,17 @@ public  final class MovieInfo extends
     return hash;
   }
 
+  public static com.doubleknd26.moving.proto.MovieInfo parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.doubleknd26.moving.proto.MovieInfo parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.doubleknd26.moving.proto.MovieInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -512,6 +537,7 @@ public  final class MovieInfo extends
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -519,6 +545,7 @@ public  final class MovieInfo extends
   public static Builder newBuilder(com.doubleknd26.moving.proto.MovieInfo prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
+  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
@@ -542,6 +569,7 @@ public  final class MovieInfo extends
       return com.doubleknd26.moving.proto.Moving.internal_static_MovieInfo_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.doubleknd26.moving.proto.Moving.internal_static_MovieInfo_fieldAccessorTable
@@ -565,6 +593,7 @@ public  final class MovieInfo extends
         getReviewsFieldBuilder();
       }
     }
+    @java.lang.Override
     public Builder clear() {
       super.clear();
       title_ = "";
@@ -588,15 +617,18 @@ public  final class MovieInfo extends
       return this;
     }
 
+    @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
       return com.doubleknd26.moving.proto.Moving.internal_static_MovieInfo_descriptor;
     }
 
+    @java.lang.Override
     public com.doubleknd26.moving.proto.MovieInfo getDefaultInstanceForType() {
       return com.doubleknd26.moving.proto.MovieInfo.getDefaultInstance();
     }
 
+    @java.lang.Override
     public com.doubleknd26.moving.proto.MovieInfo build() {
       com.doubleknd26.moving.proto.MovieInfo result = buildPartial();
       if (!result.isInitialized()) {
@@ -605,6 +637,7 @@ public  final class MovieInfo extends
       return result;
     }
 
+    @java.lang.Override
     public com.doubleknd26.moving.proto.MovieInfo buildPartial() {
       com.doubleknd26.moving.proto.MovieInfo result = new com.doubleknd26.moving.proto.MovieInfo(this);
       int from_bitField0_ = bitField0_;
@@ -637,32 +670,39 @@ public  final class MovieInfo extends
       return result;
     }
 
+    @java.lang.Override
     public Builder clone() {
       return (Builder) super.clone();
     }
+    @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
+    @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return (Builder) super.clearField(field);
     }
+    @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return (Builder) super.clearOneof(oneof);
     }
+    @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
+    @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
+    @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof com.doubleknd26.moving.proto.MovieInfo) {
         return mergeFrom((com.doubleknd26.moving.proto.MovieInfo)other);
@@ -734,14 +774,17 @@ public  final class MovieInfo extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
+    @java.lang.Override
     public final boolean isInitialized() {
       return true;
     }
 
+    @java.lang.Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -763,7 +806,7 @@ public  final class MovieInfo extends
 
     private java.lang.Object title_ = "";
     /**
-     * <code>optional string title = 1;</code>
+     * <code>string title = 1;</code>
      */
     public java.lang.String getTitle() {
       java.lang.Object ref = title_;
@@ -778,7 +821,7 @@ public  final class MovieInfo extends
       }
     }
     /**
-     * <code>optional string title = 1;</code>
+     * <code>string title = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTitleBytes() {
@@ -794,7 +837,7 @@ public  final class MovieInfo extends
       }
     }
     /**
-     * <code>optional string title = 1;</code>
+     * <code>string title = 1;</code>
      */
     public Builder setTitle(
         java.lang.String value) {
@@ -807,7 +850,7 @@ public  final class MovieInfo extends
       return this;
     }
     /**
-     * <code>optional string title = 1;</code>
+     * <code>string title = 1;</code>
      */
     public Builder clearTitle() {
       
@@ -816,7 +859,7 @@ public  final class MovieInfo extends
       return this;
     }
     /**
-     * <code>optional string title = 1;</code>
+     * <code>string title = 1;</code>
      */
     public Builder setTitleBytes(
         com.google.protobuf.ByteString value) {
@@ -832,7 +875,7 @@ public  final class MovieInfo extends
 
     private java.lang.Object director_ = "";
     /**
-     * <code>optional string director = 2;</code>
+     * <code>string director = 2;</code>
      */
     public java.lang.String getDirector() {
       java.lang.Object ref = director_;
@@ -847,7 +890,7 @@ public  final class MovieInfo extends
       }
     }
     /**
-     * <code>optional string director = 2;</code>
+     * <code>string director = 2;</code>
      */
     public com.google.protobuf.ByteString
         getDirectorBytes() {
@@ -863,7 +906,7 @@ public  final class MovieInfo extends
       }
     }
     /**
-     * <code>optional string director = 2;</code>
+     * <code>string director = 2;</code>
      */
     public Builder setDirector(
         java.lang.String value) {
@@ -876,7 +919,7 @@ public  final class MovieInfo extends
       return this;
     }
     /**
-     * <code>optional string director = 2;</code>
+     * <code>string director = 2;</code>
      */
     public Builder clearDirector() {
       
@@ -885,7 +928,7 @@ public  final class MovieInfo extends
       return this;
     }
     /**
-     * <code>optional string director = 2;</code>
+     * <code>string director = 2;</code>
      */
     public Builder setDirectorBytes(
         com.google.protobuf.ByteString value) {
@@ -1089,13 +1132,13 @@ public  final class MovieInfo extends
 
     private double grade_ ;
     /**
-     * <code>optional double grade = 5;</code>
+     * <code>double grade = 5;</code>
      */
     public double getGrade() {
       return grade_;
     }
     /**
-     * <code>optional double grade = 5;</code>
+     * <code>double grade = 5;</code>
      */
     public Builder setGrade(double value) {
       
@@ -1104,7 +1147,7 @@ public  final class MovieInfo extends
       return this;
     }
     /**
-     * <code>optional double grade = 5;</code>
+     * <code>double grade = 5;</code>
      */
     public Builder clearGrade() {
       
@@ -1115,13 +1158,13 @@ public  final class MovieInfo extends
 
     private long releaseTime_ ;
     /**
-     * <code>optional int64 release_time = 6;</code>
+     * <code>int64 release_time = 6;</code>
      */
     public long getReleaseTime() {
       return releaseTime_;
     }
     /**
-     * <code>optional int64 release_time = 6;</code>
+     * <code>int64 release_time = 6;</code>
      */
     public Builder setReleaseTime(long value) {
       
@@ -1130,7 +1173,7 @@ public  final class MovieInfo extends
       return this;
     }
     /**
-     * <code>optional int64 release_time = 6;</code>
+     * <code>int64 release_time = 6;</code>
      */
     public Builder clearReleaseTime() {
       
@@ -1378,14 +1421,16 @@ public  final class MovieInfo extends
       }
       return reviewsBuilder_;
     }
+    @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
+    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -1404,11 +1449,12 @@ public  final class MovieInfo extends
 
   private static final com.google.protobuf.Parser<MovieInfo>
       PARSER = new com.google.protobuf.AbstractParser<MovieInfo>() {
+    @java.lang.Override
     public MovieInfo parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MovieInfo(input, extensionRegistry);
+      return new MovieInfo(input, extensionRegistry);
     }
   };
 
@@ -1421,6 +1467,7 @@ public  final class MovieInfo extends
     return PARSER;
   }
 
+  @java.lang.Override
   public com.doubleknd26.moving.proto.MovieInfo getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }

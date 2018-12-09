@@ -2,7 +2,7 @@ group 'com.doubleknd26.moving.proto'
 version '1.0-SNAPSHOT'
 
 def grpcVersion = '1.17.0'
-def protoVersion = '3.0.0'
+def protoVersion = '3.6.1'
 
 apply plugin: 'com.google.protobuf'
 

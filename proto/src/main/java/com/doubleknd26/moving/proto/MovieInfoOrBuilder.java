@@ -8,21 +8,21 @@ public interface MovieInfoOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>optional string title = 1;</code>
+   * <code>string title = 1;</code>
    */
   java.lang.String getTitle();
   /**
-   * <code>optional string title = 1;</code>
+   * <code>string title = 1;</code>
    */
   com.google.protobuf.ByteString
       getTitleBytes();
 
   /**
-   * <code>optional string director = 2;</code>
+   * <code>string director = 2;</code>
    */
   java.lang.String getDirector();
   /**
-   * <code>optional string director = 2;</code>
+   * <code>string director = 2;</code>
    */
   com.google.protobuf.ByteString
       getDirectorBytes();
@@ -66,12 +66,12 @@ public interface MovieInfoOrBuilder extends
       getGenreBytes(int index);
 
   /**
-   * <code>optional double grade = 5;</code>
+   * <code>double grade = 5;</code>
    */
   double getGrade();
 
   /**
-   * <code>optional int64 release_time = 6;</code>
+   * <code>int64 release_time = 6;</code>
    */
   long getReleaseTime();
 

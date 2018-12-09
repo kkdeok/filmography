@@ -1,4 +1,4 @@
-package com.doubleknd26.moving.indexer.extract;
+package com.doubleknd26.moving.indexer.crawl;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,23 +11,23 @@ import static org.junit.Assert.*;
 /**
  * Created by doubleknd26 on 02/12/2018.
  */
-public class MovieNameExtractorTest {
-    private MovieNameExtractor crawler;
+public class MovieNameCrawlerTest {
+    private MovieNameCrawler crawler;
 
     @Before
     public void setUp() throws Exception {
-        crawler = new MovieNameExtractor();
+        crawler = new MovieNameCrawler();
     }
 
     @Test
-    public void testExtract() throws Exception {
-        Set response = crawler.extract();
+    public void testCrawl() throws Exception {
+        Set response = crawler.crawl();
         assertThat(response.isEmpty(), is(false));
     }
 
     @Test
     public void testTypeCasting() throws Exception {
-        Set response = crawler.extract();
+        Set response = crawler.crawl();
         for (Object obj: response) {
             String result = obj instanceof String ? ((String) obj) : null;
             assertThat(result == null || result.isEmpty(), is(false));
@@ -36,7 +36,7 @@ public class MovieNameExtractorTest {
 
     @Test
     public void parse() throws Exception {
-        Set response = crawler.extract();
+        Set response = crawler.crawl();
         for (Object obj: response) {
             String result = (String) obj;
             assertThat(result.startsWith(" "), is(false));

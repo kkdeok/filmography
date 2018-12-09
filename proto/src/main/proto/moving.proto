@@ -12,7 +12,7 @@ message Review {
     SourceType sourceType = 1;
     string url = 2;
     string title = 3;
-    int32 grade = 4;
+    float grade = 4;
     string comment = 5;
     int64 timestamp = 6;
 }

@@ -35,7 +35,7 @@ public final class Moving {
     java.lang.String[] descriptorData = {
       "\n\014moving.proto\"x\n\006Review\022\037\n\nsourceType\030\001" +
       " \001(\0162\013.SourceType\022\013\n\003url\030\002 \001(\t\022\r\n\005title\030" +
-      "\003 \001(\t\022\r\n\005grade\030\004 \001(\005\022\017\n\007comment\030\005 \001(\t\022\021\n" +
+      "\003 \001(\t\022\r\n\005grade\030\004 \001(\002\022\017\n\007comment\030\005 \001(\t\022\021\n" +
       "\ttimestamp\030\006 \001(\003\"\214\001\n\tMovieInfo\022\r\n\005title\030" +
       "\001 \001(\t\022\020\n\010director\030\002 \001(\t\022\020\n\010starring\030\003 \003(" +
       "\t\022\r\n\005genre\030\004 \003(\t\022\r\n\005grade\030\005 \001(\001\022\024\n\014relea" +

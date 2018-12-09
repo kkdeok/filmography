@@ -1,4 +1,4 @@
-package com.doubleknd26.moving.indexer.extract;
+package com.doubleknd26.moving.indexer.crawl;
 
 import com.doubleknd26.moving.proto.Review;
 import com.doubleknd26.moving.proto.SourceType;
@@ -16,18 +16,18 @@ import java.util.Set;
  *
  * Created by doubleknd26 on 2018-12-05.
  */
-public class NaverMovieExtractor implements Extractor {
+public class NaverMovieCrawler implements Crawler {
     private static final String BASE_URL = "https://movie.naver.com/movie/point/af/list.nhn?target=after&page=";
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yy.MM.dd");
     // In Naver, there is 1,000 pages for showing user reviews. We can see 10 reviews per page.
     private static final int MAX_NUM = 1000;
     private int pageLimit = 0;
 
-    public NaverMovieExtractor() {
+    public NaverMovieCrawler() {
         this(MAX_NUM);
     }
 
-    public NaverMovieExtractor(int pageLimit) {
+    public NaverMovieCrawler(int pageLimit) {
         if (pageLimit > MAX_NUM) {
             this.pageLimit = MAX_NUM;
         } else {
@@ -36,7 +36,7 @@ public class NaverMovieExtractor implements Extractor {
     }
 
     @Override
-    public Set<Review> extract() throws Exception {
+    public Set<Review> crawl() throws Exception {
         Set<Review> reviews = Sets.newHashSet();
         for (int i = 1; i <= pageLimit; i++) {
             String url = BASE_URL + i;

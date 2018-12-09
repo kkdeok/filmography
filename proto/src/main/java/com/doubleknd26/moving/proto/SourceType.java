@@ -70,8 +70,7 @@ public enum SourceType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.doubleknd26.moving.proto.Moving.getDescriptor()
-        .getEnumTypes().get(0);
+    return com.doubleknd26.moving.proto.Moving.getDescriptor().getEnumTypes().get(0);
   }
 
   private static final SourceType[] VALUES = values();

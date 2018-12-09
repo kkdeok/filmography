@@ -10,6 +10,7 @@ public  final class Review extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:Review)
     ReviewOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Review.newBuilder() to construct.
   private Review(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -18,7 +19,7 @@ public  final class Review extends
     sourceType_ = 0;
     url_ = "";
     title_ = "";
-    grade_ = 0;
+    grade_ = 0F;
     comment_ = "";
     timestamp_ = 0L;
   }
@@ -26,14 +27,19 @@ public  final class Review extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Review(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,12 +48,6 @@ public  final class Review extends
           case 0:
             done = true;
             break;
-          default: {
-            if (!input.skipField(tag)) {
-              done = true;
-            }
-            break;
-          }
           case 8: {
             int rawValue = input.readEnum();
 
@@ -66,9 +66,9 @@ public  final class Review extends
             title_ = s;
             break;
           }
-          case 32: {
+          case 37: {
 
-            grade_ = input.readInt32();
+            grade_ = input.readFloat();
             break;
           }
           case 42: {
@@ -82,6 +82,13 @@ public  final class Review extends
             timestamp_ = input.readInt64();
             break;
           }
+          default: {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
+              done = true;
+            }
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -90,6 +97,7 @@ public  final class Review extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -98,6 +106,7 @@ public  final class Review extends
     return com.doubleknd26.moving.proto.Moving.internal_static_Review_descriptor;
   }
 
+  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return com.doubleknd26.moving.proto.Moving.internal_static_Review_fieldAccessorTable
@@ -108,15 +117,16 @@ public  final class Review extends
   public static final int SOURCETYPE_FIELD_NUMBER = 1;
   private int sourceType_;
   /**
-   * <code>optional .SourceType sourceType = 1;</code>
+   * <code>.SourceType sourceType = 1;</code>
    */
   public int getSourceTypeValue() {
     return sourceType_;
   }
   /**
-   * <code>optional .SourceType sourceType = 1;</code>
+   * <code>.SourceType sourceType = 1;</code>
    */
   public com.doubleknd26.moving.proto.SourceType getSourceType() {
+    @SuppressWarnings("deprecation")
     com.doubleknd26.moving.proto.SourceType result = com.doubleknd26.moving.proto.SourceType.valueOf(sourceType_);
     return result == null ? com.doubleknd26.moving.proto.SourceType.UNRECOGNIZED : result;
   }
@@ -124,7 +134,7 @@ public  final class Review extends
   public static final int URL_FIELD_NUMBER = 2;
   private volatile java.lang.Object url_;
   /**
-   * <code>optional string url = 2;</code>
+   * <code>string url = 2;</code>
    */
   public java.lang.String getUrl() {
     java.lang.Object ref = url_;
@@ -139,7 +149,7 @@ public  final class Review extends
     }
   }
   /**
-   * <code>optional string url = 2;</code>
+   * <code>string url = 2;</code>
    */
   public com.google.protobuf.ByteString
       getUrlBytes() {
@@ -158,7 +168,7 @@ public  final class Review extends
   public static final int TITLE_FIELD_NUMBER = 3;
   private volatile java.lang.Object title_;
   /**
-   * <code>optional string title = 3;</code>
+   * <code>string title = 3;</code>
    */
   public java.lang.String getTitle() {
     java.lang.Object ref = title_;
@@ -173,7 +183,7 @@ public  final class Review extends
     }
   }
   /**
-   * <code>optional string title = 3;</code>
+   * <code>string title = 3;</code>
    */
   public com.google.protobuf.ByteString
       getTitleBytes() {
@@ -190,18 +200,18 @@ public  final class Review extends
   }
 
   public static final int GRADE_FIELD_NUMBER = 4;
-  private int grade_;
+  private float grade_;
   /**
-   * <code>optional int32 grade = 4;</code>
+   * <code>float grade = 4;</code>
    */
-  public int getGrade() {
+  public float getGrade() {
     return grade_;
   }
 
   public static final int COMMENT_FIELD_NUMBER = 5;
   private volatile java.lang.Object comment_;
   /**
-   * <code>optional string comment = 5;</code>
+   * <code>string comment = 5;</code>
    */
   public java.lang.String getComment() {
     java.lang.Object ref = comment_;
@@ -216,7 +226,7 @@ public  final class Review extends
     }
   }
   /**
-   * <code>optional string comment = 5;</code>
+   * <code>string comment = 5;</code>
    */
   public com.google.protobuf.ByteString
       getCommentBytes() {
@@ -235,13 +245,14 @@ public  final class Review extends
   public static final int TIMESTAMP_FIELD_NUMBER = 6;
   private long timestamp_;
   /**
-   * <code>optional int64 timestamp = 6;</code>
+   * <code>int64 timestamp = 6;</code>
    */
   public long getTimestamp() {
     return timestamp_;
   }
 
   private byte memoizedIsInitialized = -1;
+  @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -251,6 +262,7 @@ public  final class Review extends
     return true;
   }
 
+  @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (sourceType_ != com.doubleknd26.moving.proto.SourceType.NAVER.getNumber()) {
@@ -262,8 +274,8 @@ public  final class Review extends
     if (!getTitleBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, title_);
     }
-    if (grade_ != 0) {
-      output.writeInt32(4, grade_);
+    if (grade_ != 0F) {
+      output.writeFloat(4, grade_);
     }
     if (!getCommentBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, comment_);
@@ -271,8 +283,10 @@ public  final class Review extends
     if (timestamp_ != 0L) {
       output.writeInt64(6, timestamp_);
     }
+    unknownFields.writeTo(output);
   }
 
+  @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -288,9 +302,9 @@ public  final class Review extends
     if (!getTitleBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, title_);
     }
-    if (grade_ != 0) {
+    if (grade_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, grade_);
+        .computeFloatSize(4, grade_);
     }
     if (!getCommentBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, comment_);
@@ -299,11 +313,11 @@ public  final class Review extends
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(6, timestamp_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -320,12 +334,15 @@ public  final class Review extends
         .equals(other.getUrl());
     result = result && getTitle()
         .equals(other.getTitle());
-    result = result && (getGrade()
-        == other.getGrade());
+    result = result && (
+        java.lang.Float.floatToIntBits(getGrade())
+        == java.lang.Float.floatToIntBits(
+            other.getGrade()));
     result = result && getComment()
         .equals(other.getComment());
     result = result && (getTimestamp()
         == other.getTimestamp());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -335,7 +352,7 @@ public  final class Review extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SOURCETYPE_FIELD_NUMBER;
     hash = (53 * hash) + sourceType_;
     hash = (37 * hash) + URL_FIELD_NUMBER;
@@ -343,7 +360,8 @@ public  final class Review extends
     hash = (37 * hash) + TITLE_FIELD_NUMBER;
     hash = (53 * hash) + getTitle().hashCode();
     hash = (37 * hash) + GRADE_FIELD_NUMBER;
-    hash = (53 * hash) + getGrade();
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getGrade());
     hash = (37 * hash) + COMMENT_FIELD_NUMBER;
     hash = (53 * hash) + getComment().hashCode();
     hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
@@ -354,6 +372,17 @@ public  final class Review extends
     return hash;
   }
 
+  public static com.doubleknd26.moving.proto.Review parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.doubleknd26.moving.proto.Review parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.doubleknd26.moving.proto.Review parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -413,6 +442,7 @@ public  final class Review extends
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -420,6 +450,7 @@ public  final class Review extends
   public static Builder newBuilder(com.doubleknd26.moving.proto.Review prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
+  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
@@ -443,6 +474,7 @@ public  final class Review extends
       return com.doubleknd26.moving.proto.Moving.internal_static_Review_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.doubleknd26.moving.proto.Moving.internal_static_Review_fieldAccessorTable
@@ -465,6 +497,7 @@ public  final class Review extends
               .alwaysUseFieldBuilders) {
       }
     }
+    @java.lang.Override
     public Builder clear() {
       super.clear();
       sourceType_ = 0;
@@ -473,7 +506,7 @@ public  final class Review extends
 
       title_ = "";
 
-      grade_ = 0;
+      grade_ = 0F;
 
       comment_ = "";
 
@@ -482,15 +515,18 @@ public  final class Review extends
       return this;
     }
 
+    @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
       return com.doubleknd26.moving.proto.Moving.internal_static_Review_descriptor;
     }
 
+    @java.lang.Override
     public com.doubleknd26.moving.proto.Review getDefaultInstanceForType() {
       return com.doubleknd26.moving.proto.Review.getDefaultInstance();
     }
 
+    @java.lang.Override
     public com.doubleknd26.moving.proto.Review build() {
       com.doubleknd26.moving.proto.Review result = buildPartial();
       if (!result.isInitialized()) {
@@ -499,6 +535,7 @@ public  final class Review extends
       return result;
     }
 
+    @java.lang.Override
     public com.doubleknd26.moving.proto.Review buildPartial() {
       com.doubleknd26.moving.proto.Review result = new com.doubleknd26.moving.proto.Review(this);
       result.sourceType_ = sourceType_;
@@ -511,32 +548,39 @@ public  final class Review extends
       return result;
     }
 
+    @java.lang.Override
     public Builder clone() {
       return (Builder) super.clone();
     }
+    @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
+    @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return (Builder) super.clearField(field);
     }
+    @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return (Builder) super.clearOneof(oneof);
     }
+    @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
+    @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
+    @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof com.doubleknd26.moving.proto.Review) {
         return mergeFrom((com.doubleknd26.moving.proto.Review)other);
@@ -559,7 +603,7 @@ public  final class Review extends
         title_ = other.title_;
         onChanged();
       }
-      if (other.getGrade() != 0) {
+      if (other.getGrade() != 0F) {
         setGrade(other.getGrade());
       }
       if (!other.getComment().isEmpty()) {
@@ -569,14 +613,17 @@ public  final class Review extends
       if (other.getTimestamp() != 0L) {
         setTimestamp(other.getTimestamp());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
+    @java.lang.Override
     public final boolean isInitialized() {
       return true;
     }
 
+    @java.lang.Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -597,13 +644,13 @@ public  final class Review extends
 
     private int sourceType_ = 0;
     /**
-     * <code>optional .SourceType sourceType = 1;</code>
+     * <code>.SourceType sourceType = 1;</code>
      */
     public int getSourceTypeValue() {
       return sourceType_;
     }
     /**
-     * <code>optional .SourceType sourceType = 1;</code>
+     * <code>.SourceType sourceType = 1;</code>
      */
     public Builder setSourceTypeValue(int value) {
       sourceType_ = value;
@@ -611,14 +658,15 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional .SourceType sourceType = 1;</code>
+     * <code>.SourceType sourceType = 1;</code>
      */
     public com.doubleknd26.moving.proto.SourceType getSourceType() {
+      @SuppressWarnings("deprecation")
       com.doubleknd26.moving.proto.SourceType result = com.doubleknd26.moving.proto.SourceType.valueOf(sourceType_);
       return result == null ? com.doubleknd26.moving.proto.SourceType.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .SourceType sourceType = 1;</code>
+     * <code>.SourceType sourceType = 1;</code>
      */
     public Builder setSourceType(com.doubleknd26.moving.proto.SourceType value) {
       if (value == null) {
@@ -630,7 +678,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional .SourceType sourceType = 1;</code>
+     * <code>.SourceType sourceType = 1;</code>
      */
     public Builder clearSourceType() {
       
@@ -641,7 +689,7 @@ public  final class Review extends
 
     private java.lang.Object url_ = "";
     /**
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public java.lang.String getUrl() {
       java.lang.Object ref = url_;
@@ -656,7 +704,7 @@ public  final class Review extends
       }
     }
     /**
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
@@ -672,7 +720,7 @@ public  final class Review extends
       }
     }
     /**
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public Builder setUrl(
         java.lang.String value) {
@@ -685,7 +733,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public Builder clearUrl() {
       
@@ -694,7 +742,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public Builder setUrlBytes(
         com.google.protobuf.ByteString value) {
@@ -710,7 +758,7 @@ public  final class Review extends
 
     private java.lang.Object title_ = "";
     /**
-     * <code>optional string title = 3;</code>
+     * <code>string title = 3;</code>
      */
     public java.lang.String getTitle() {
       java.lang.Object ref = title_;
@@ -725,7 +773,7 @@ public  final class Review extends
       }
     }
     /**
-     * <code>optional string title = 3;</code>
+     * <code>string title = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTitleBytes() {
@@ -741,7 +789,7 @@ public  final class Review extends
       }
     }
     /**
-     * <code>optional string title = 3;</code>
+     * <code>string title = 3;</code>
      */
     public Builder setTitle(
         java.lang.String value) {
@@ -754,7 +802,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional string title = 3;</code>
+     * <code>string title = 3;</code>
      */
     public Builder clearTitle() {
       
@@ -763,7 +811,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional string title = 3;</code>
+     * <code>string title = 3;</code>
      */
     public Builder setTitleBytes(
         com.google.protobuf.ByteString value) {
@@ -777,35 +825,35 @@ public  final class Review extends
       return this;
     }
 
-    private int grade_ ;
+    private float grade_ ;
     /**
-     * <code>optional int32 grade = 4;</code>
+     * <code>float grade = 4;</code>
      */
-    public int getGrade() {
+    public float getGrade() {
       return grade_;
     }
     /**
-     * <code>optional int32 grade = 4;</code>
+     * <code>float grade = 4;</code>
      */
-    public Builder setGrade(int value) {
+    public Builder setGrade(float value) {
       
       grade_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>optional int32 grade = 4;</code>
+     * <code>float grade = 4;</code>
      */
     public Builder clearGrade() {
       
-      grade_ = 0;
+      grade_ = 0F;
       onChanged();
       return this;
     }
 
     private java.lang.Object comment_ = "";
     /**
-     * <code>optional string comment = 5;</code>
+     * <code>string comment = 5;</code>
      */
     public java.lang.String getComment() {
       java.lang.Object ref = comment_;
@@ -820,7 +868,7 @@ public  final class Review extends
       }
     }
     /**
-     * <code>optional string comment = 5;</code>
+     * <code>string comment = 5;</code>
      */
     public com.google.protobuf.ByteString
         getCommentBytes() {
@@ -836,7 +884,7 @@ public  final class Review extends
       }
     }
     /**
-     * <code>optional string comment = 5;</code>
+     * <code>string comment = 5;</code>
      */
     public Builder setComment(
         java.lang.String value) {
@@ -849,7 +897,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional string comment = 5;</code>
+     * <code>string comment = 5;</code>
      */
     public Builder clearComment() {
       
@@ -858,7 +906,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional string comment = 5;</code>
+     * <code>string comment = 5;</code>
      */
     public Builder setCommentBytes(
         com.google.protobuf.ByteString value) {
@@ -874,13 +922,13 @@ public  final class Review extends
 
     private long timestamp_ ;
     /**
-     * <code>optional int64 timestamp = 6;</code>
+     * <code>int64 timestamp = 6;</code>
      */
     public long getTimestamp() {
       return timestamp_;
     }
     /**
-     * <code>optional int64 timestamp = 6;</code>
+     * <code>int64 timestamp = 6;</code>
      */
     public Builder setTimestamp(long value) {
       
@@ -889,7 +937,7 @@ public  final class Review extends
       return this;
     }
     /**
-     * <code>optional int64 timestamp = 6;</code>
+     * <code>int64 timestamp = 6;</code>
      */
     public Builder clearTimestamp() {
       
@@ -897,14 +945,16 @@ public  final class Review extends
       onChanged();
       return this;
     }
+    @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
+    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -923,11 +973,12 @@ public  final class Review extends
 
   private static final com.google.protobuf.Parser<Review>
       PARSER = new com.google.protobuf.AbstractParser<Review>() {
+    @java.lang.Override
     public Review parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Review(input, extensionRegistry);
+      return new Review(input, extensionRegistry);
     }
   };
 
@@ -940,6 +991,7 @@ public  final class Review extends
     return PARSER;
   }
 
+  @java.lang.Override
   public com.doubleknd26.moving.proto.Review getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }

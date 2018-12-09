@@ -6,6 +6,15 @@ def protoVersion = '3.0.0'
 
 apply plugin: 'com.google.protobuf'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
+
 dependencies{
     compile "io.grpc:grpc-netty:${grpcVersion}"
     compile "io.grpc:grpc-protobuf:${grpcVersion}"
@@ -19,10 +28,6 @@ sourceSets {
     main {
         proto {
             srcDir 'src/main/proto'
-        }
-        java {
-            // include self written and generated code
-            srcDirs 'src/main/java'
         }
     }
 }

@@ -1,71 +1,74 @@
 package com.doubleknd26.moving.indexer;
 
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
 import com.doubleknd26.moving.indexer.crawl.Crawler;
 import com.doubleknd26.moving.indexer.crawl.MovieNameCrawler;
 import com.doubleknd26.moving.indexer.crawl.NaverMovieCrawler;
+import com.doubleknd26.moving.indexer.transform.ReviewTransformer;
+import com.doubleknd26.moving.indexer.utils.ScalaUtils;
+import com.doubleknd26.moving.proto.MovieInfo;
 import com.doubleknd26.moving.proto.Review;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
-import org.apache.commons.collections.IteratorUtils;
+import com.google.common.collect.Lists;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
 import org.apache.spark.sql.SparkSession;
 import scala.reflect.ClassTag;
 
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by doubleknd26 on 2018-12-08.
  */
 public class Indexer {
-    private SparkSession ss;
-    private JavaSparkContext jsc;
-    private static final ImmutableList<Crawler> list = ImmutableList.<Crawler>builder()
+    @VisibleForTesting
+    protected static class Params {
+        @Parameter(names = {"--shards"}, description = "index shard count")
+        public int shards = 2;
+
+        @Parameter(names = {"--master"}, description = "spark master")
+        public String master = "local[*]";
+    }
+
+    private static final ImmutableList<Crawler> crawlingList = ImmutableList.<Crawler>builder()
             .add(new NaverMovieCrawler())
             .build();
+    private SparkSession ss;
+    private JavaSparkContext jsc;
 
-    public Indexer() {
+    public Indexer(Params params) {
         this.ss = SparkSession.builder()
-                .master("local[*]")
-                .appName("Word Count")
+                .appName("Moving Indexer")
+                .master(params.master)
                 .getOrCreate();
         this.jsc = new JavaSparkContext(this.ss.sparkContext());
     }
 
     public static void main(String[] args) throws Exception {
-        Indexer driver = new Indexer();
-        driver.run();
+        Params params = new Params();
+        JCommander jCommander = new JCommander(params);
+        jCommander.parse(args);
+        Indexer indexer = new Indexer(params);
+        indexer.run();
     }
 
     public void run() throws Exception {
-        Broadcast<Set<String>> titles = getRunningTitles();
-        JavaRDD<Review> reviewRdd = getReviewRdd();
-
-//        JavaRDD<MovieInfo> transformed = transformer.transform();
-//        transformed.saveAsTextFile("/pang/wow.txt");
-    }
-
-    private Broadcast<Set<String>> getRunningTitles() throws Exception {
         MovieNameCrawler movieNameCrawler = new MovieNameCrawler();
-        ClassTag<Set<String>> classTag = scala
-                .reflect
-                .ClassTag$
-                .MODULE$
-                .apply(Set.class);
-        return ss.sparkContext().broadcast(movieNameCrawler.crawl(), classTag);
-    }
+        ClassTag<Set<String>> classTag = ScalaUtils.getClassTag(Set.class);
+        Broadcast<Set<String>> titles =  ss.sparkContext().broadcast(movieNameCrawler.crawl(), classTag);
 
-    private JavaRDD<Review> getReviewRdd() throws Exception {
-        JavaRDD<Review> reviewRdd = null;
-        for (Crawler crawler : list) {
-            Set reviews = crawler.crawl();
-            if (reviewRdd == null) {
-                reviewRdd = jsc.parallelize(IteratorUtils.toList(reviews.iterator()));
-            } else {
-                reviewRdd.union(jsc.parallelize(IteratorUtils.toList(reviews.iterator())));
-            }
+        JavaRDD<Review> reviewRdd = jsc.emptyRDD();
+        for (Crawler crawler : crawlingList) {
+            List<Review> lists = Lists.newArrayList(crawler.crawl());
+            reviewRdd = reviewRdd.union(jsc.parallelize(lists));
         }
-        return reviewRdd;
+
+        ReviewTransformer transformer = new ReviewTransformer(titles, reviewRdd);
+        JavaRDD<MovieInfo> transformed = transformer.run();
     }
 }

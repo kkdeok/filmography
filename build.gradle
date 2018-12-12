@@ -11,4 +11,8 @@ subprojects {
     repositories {
         mavenCentral()
     }
+
+    dependencies {
+        compile group: 'com.beust', name: 'jcommander', version: '1.72'
+    }
 }

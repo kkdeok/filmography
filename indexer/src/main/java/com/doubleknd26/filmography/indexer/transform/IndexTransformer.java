@@ -1,6 +1,6 @@
-package com.doubleknd26.moviesearcher.indexer.transform;
+package com.doubleknd26.filmography.indexer.transform;
 
-import com.doubleknd26.moviesearcher.proto.MovieInfo;
+import com.doubleknd26.filmography.proto.MovieInfo;
 import com.google.common.collect.Lists;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

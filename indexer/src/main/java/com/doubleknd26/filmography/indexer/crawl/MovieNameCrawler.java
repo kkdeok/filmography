@@ -1,4 +1,4 @@
-package com.doubleknd26.moviesearcher.indexer.crawl;
+package com.doubleknd26.filmography.indexer.crawl;
 
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;

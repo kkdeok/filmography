@@ -1,15 +1,15 @@
-package com.doubleknd26.moviesearcher.indexer;
+package com.doubleknd26.filmography.indexer;
 
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import com.doubleknd26.moviesearcher.indexer.crawl.Crawler;
-import com.doubleknd26.moviesearcher.indexer.crawl.MovieNameCrawler;
-import com.doubleknd26.moviesearcher.indexer.crawl.NaverMovieCrawler;
-import com.doubleknd26.moviesearcher.indexer.transform.ReviewTransformer;
-import com.doubleknd26.moviesearcher.indexer.utils.ScalaUtils;
-import com.doubleknd26.moviesearcher.proto.MovieInfo;
-import com.doubleknd26.moviesearcher.proto.Review;
+import com.doubleknd26.filmography.indexer.crawl.Crawler;
+import com.doubleknd26.filmography.indexer.crawl.MovieNameCrawler;
+import com.doubleknd26.filmography.indexer.crawl.NaverMovieCrawler;
+import com.doubleknd26.filmography.indexer.transform.ReviewTransformer;
+import com.doubleknd26.filmography.indexer.utils.ScalaUtils;
+import com.doubleknd26.filmography.proto.MovieInfo;
+import com.doubleknd26.filmography.proto.Review;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;

@@ -1,4 +1,4 @@
-package com.doubleknd26.moviesearcher.indexer.utils;
+package com.doubleknd26.filmography.indexer.utils;
 
 import scala.reflect.ClassTag;
 

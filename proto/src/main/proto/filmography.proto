@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.doubleknd26.moviesearcher.proto";
+option java_package = "com.doubleknd26.filmography.proto";
 
 /* This type is about the sources that extract data what we need. */
 enum SourceType {

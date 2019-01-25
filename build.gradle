@@ -1,4 +1,4 @@
-group 'com.doubleknd26.moviesearcher'
+group 'com.doubleknd26.filmography'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'

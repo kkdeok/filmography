@@ -1,4 +1,4 @@
-package com.doubleknd26.moviesearcher.indexer;
+package com.doubleknd26.filmography.indexer;
 
 import org.junit.Test;
 

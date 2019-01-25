@@ -1,56 +1,29 @@
 package com.doubleknd26.filmography.indexer.crawl;
 
-import com.doubleknd26.filmography.proto.Review;
-import com.doubleknd26.filmography.proto.SourceType;
-import com.google.common.collect.Sets;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.List;
 
 /**
+ * This class crawls film review from NAVER web page.
  *
  * Created by Kideok Kim on 2018-12-05.
  */
-public class NaverMovieCrawler implements Crawler {
-    private static final String BASE_URL = "https://movie.naver.com/movie/point/af/list.nhn?target=after&page=";
+public class NaverMovieCrawler extends Crawler {
+    private static final String URL = "https://movie.naver.com/movie/point/af/list.nhn?target=after&page=";
+    private static final List<String> SELECTORS = Arrays.asList("list_netizen", "tbody", "tr");
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yy.MM.dd");
-    // In Naver, there is 1,000 pages for showing user reviews. We can see 10 reviews per page.
-    private static final int MAX_NUM = 1000;
-    private int pageLimit = 0;
+    private static final int DEFAULT_PAGE_LIMIT = 10;
 
     public NaverMovieCrawler() {
-        this(MAX_NUM);
+        this(DEFAULT_PAGE_LIMIT);
     }
 
     public NaverMovieCrawler(int pageLimit) {
-        if (pageLimit > MAX_NUM) {
-            this.pageLimit = MAX_NUM;
-        } else {
-            this.pageLimit = pageLimit;
-        }
-    }
-
-    @Override
-    public Set<Review> crawl() throws Exception {
-        Set<Review> reviews = Sets.newHashSet();
-        for (int i = 1; i <= pageLimit; i++) {
-            String url = BASE_URL + i;
-            Document doc = Jsoup.connect(url).get();
-            Elements elements = doc.body()
-                    .getElementsByClass("list_netizen")
-                    .select("tbody")
-                    .select("tr");
-            for (Element element: elements) {
-                Review review = parse(element).setUrl(url).build();
-                reviews.add(review);
-            }
-        }
-        return reviews;
+        super(URL, pageLimit, SELECTORS);
     }
 
     /**
@@ -75,6 +48,8 @@ public class NaverMovieCrawler implements Crawler {
      * @param element
      * @return
      * @throws ParseException
+     *
+     * TODO: start from here.
      */
     private Review.Builder parse (Element element) throws ParseException {
         // grade

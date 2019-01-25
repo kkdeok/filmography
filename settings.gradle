@@ -1,4 +1,3 @@
 rootProject.name = 'filmography'
 include 'indexer'
-include 'proto'
 

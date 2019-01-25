@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * Created by doubleknd26 on 2018-12-08.
+ * Created by Kideok Kim on 2018-12-08.
  */
 public class ReviewTransformer implements Serializable {
     private Broadcast<Set<String>> titles;

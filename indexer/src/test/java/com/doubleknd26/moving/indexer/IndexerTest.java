@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by coupang on 2018-12-11.
+ * Created by Kideok Kim on 2018-12-11.
  */
 public class IndexerTest {
 

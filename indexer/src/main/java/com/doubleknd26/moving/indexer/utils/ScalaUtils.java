@@ -3,7 +3,7 @@ package com.doubleknd26.moving.indexer.utils;
 import scala.reflect.ClassTag;
 
 /**
- * Created by doubleknd26 on 2018-12-11.
+ * Created by Kideok Kim on 2018-12-11.
  */
 public class ScalaUtils {
 

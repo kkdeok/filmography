@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by doubleknd26 on 2018-12-08.
+ * Created by Kideok Kim on 2018-12-08.
  */
 public class Indexer {
     @VisibleForTesting

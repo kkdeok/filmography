@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
- * Created by doubleknd26 on 2018-12-05.
+ * Created by Kideok Kim on 2018-12-05.
  */
 public class NaverMovieCrawlerTest {
     private NaverMovieCrawler extractor;

@@ -17,7 +17,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 /**
- * Created by doubleknd26 on 2018-12-09.
+ * Created by Kideok Kim on 2018-12-09.
  */
 public class ReviewTransformerTest {
     private SparkSession ss;

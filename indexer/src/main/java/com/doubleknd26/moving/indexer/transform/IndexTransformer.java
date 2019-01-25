@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Created by doubleknd26 on 2018-12-11.
+ * Created by Kideok Kim on 2018-12-11.
  */
 public class IndexTransformer {
     private static final Logger logger = LogManager.getLogger(IndexTransformer.class);

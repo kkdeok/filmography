@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
- * Created by doubleknd26 on 02/12/2018.
+ * Created by Kideok Kim on 02/12/2018.
  */
 public class MovieNameCrawlerTest {
     private MovieNameCrawler crawler;

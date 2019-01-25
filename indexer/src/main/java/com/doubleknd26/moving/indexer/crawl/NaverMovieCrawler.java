@@ -14,7 +14,7 @@ import java.util.Set;
 
 /**
  *
- * Created by doubleknd26 on 2018-12-05.
+ * Created by Kideok Kim on 2018-12-05.
  */
 public class NaverMovieCrawler implements Crawler {
     private static final String BASE_URL = "https://movie.naver.com/movie/point/af/list.nhn?target=after&page=";

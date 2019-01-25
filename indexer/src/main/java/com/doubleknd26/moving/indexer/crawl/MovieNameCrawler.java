@@ -11,7 +11,7 @@ import java.util.Set;
  * This class crawls current running movie name from NAVER movie web page.
  * Here is url, https://movie.naver.com/movie/running/current.nhn
  *
- * Created by doubleknd26 on 02/12/2018.
+ * Created by Kideok Kim on 02/12/2018.
  */
 public class MovieNameCrawler implements Crawler {
     private static final String BASE_URL = "https://movie.naver.com/movie/running/current.nhn";

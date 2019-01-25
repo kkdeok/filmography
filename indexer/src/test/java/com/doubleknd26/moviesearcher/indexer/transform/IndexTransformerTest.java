@@ -1,4 +1,4 @@
-package com.doubleknd26.moving.indexer.transform;
+package com.doubleknd26.moviesearcher.indexer.transform;
 
 import static org.junit.Assert.*;
 

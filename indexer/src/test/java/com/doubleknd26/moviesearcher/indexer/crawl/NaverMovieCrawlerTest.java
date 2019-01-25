@@ -1,6 +1,6 @@
-package com.doubleknd26.moving.indexer.crawl;
+package com.doubleknd26.moviesearcher.indexer.crawl;
 
-import com.doubleknd26.moving.proto.Review;
+import com.doubleknd26.moviesearcher.proto.Review;
 import org.junit.Before;
 import org.junit.Test;
 

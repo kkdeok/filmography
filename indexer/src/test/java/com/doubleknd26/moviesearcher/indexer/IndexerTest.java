@@ -1,8 +1,6 @@
-package com.doubleknd26.moving.indexer;
+package com.doubleknd26.moviesearcher.indexer;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Kideok Kim on 2018-12-11.

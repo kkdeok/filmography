@@ -1,10 +1,7 @@
-package com.doubleknd26.moving.indexer.transform;
+package com.doubleknd26.moviesearcher.indexer.transform;
 
-import com.doubleknd26.moving.proto.MovieInfo;
+import com.doubleknd26.moviesearcher.proto.MovieInfo;
 import com.google.common.collect.Lists;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.common.util.concurrent.MoreExecutors;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.spark.api.java.JavaRDD;
@@ -13,11 +10,6 @@ import org.apache.spark.api.java.function.Function2;
 import java.nio.file.Files;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by Kideok Kim on 2018-12-11.

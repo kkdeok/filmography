@@ -1,4 +1,4 @@
-group 'com.doubleknd26.moving.proto'
+group 'com.doubleknd26.moviesearcher.proto'
 version '1.0-SNAPSHOT'
 
 def grpcVersion = '1.17.0'

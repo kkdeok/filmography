@@ -1,4 +1,4 @@
-group 'com.doubleknd26.moving.indexer'
+group 'com.doubleknd26.moviesearcher.indexer'
 version '1.0-SNAPSHOT'
 
 dependencies {

@@ -1,4 +1,4 @@
-package com.doubleknd26.moving.indexer.crawl;
+package com.doubleknd26.moviesearcher.indexer.crawl;
 
 import java.util.Set;
 

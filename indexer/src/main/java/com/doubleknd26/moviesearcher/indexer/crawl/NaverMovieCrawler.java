@@ -1,7 +1,7 @@
-package com.doubleknd26.moving.indexer.crawl;
+package com.doubleknd26.moviesearcher.indexer.crawl;
 
-import com.doubleknd26.moving.proto.Review;
-import com.doubleknd26.moving.proto.SourceType;
+import com.doubleknd26.moviesearcher.proto.Review;
+import com.doubleknd26.moviesearcher.proto.SourceType;
 import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

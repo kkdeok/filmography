@@ -1,7 +1,7 @@
-package com.doubleknd26.moving.indexer.transform;
+package com.doubleknd26.moviesearcher.indexer.transform;
 
-import com.doubleknd26.moving.proto.MovieInfo;
-import com.doubleknd26.moving.proto.Review;
+import com.doubleknd26.moviesearcher.proto.MovieInfo;
+import com.doubleknd26.moviesearcher.proto.Review;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.ListUtils;
 import org.apache.spark.api.java.JavaRDD;

@@ -1,4 +1,4 @@
-rootProject.name = 'moving'
+rootProject.name = 'movie-searcher'
 include 'indexer'
 include 'proto'
 

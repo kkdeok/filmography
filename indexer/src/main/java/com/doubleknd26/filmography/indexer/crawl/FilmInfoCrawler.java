@@ -24,7 +24,7 @@ public class FilmInfoCrawler extends WebCrawler {
         super(URLS, TARGETS);
     }
 
-    // TODO: in progress
+    // TODO: refactoring in progress
     @Override
     Set parse(Elements elements) {
         Set<FilmInfo> filmInfos = Sets.newHashSet();

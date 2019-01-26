@@ -15,31 +15,31 @@ import java.util.Set;
  *
  * Created by Kideok Kim on 02/12/2018.
  */
-public abstract class Crawler <T> {
+public abstract class WebCrawler <T> {
     private List<String> urls;
     // Jsoup provide a select api to get specific tags from parsed html using
     // a css selector. ref)https://www.w3schools.com/cssref/css_selectors.asp
-    private List<String> selectors;
+    private List<String> targets;
 
-    Crawler(List<String> urls, List<String> selectors) {
+    WebCrawler(List<String> urls, List<String> targets) {
         this.urls = urls;
-        this.selectors = selectors;
+        this.targets = targets;
     }
 
-    Crawler(String url, int pageLimit, List<String> selectors) {
+    WebCrawler(String url, int pageLimit, List<String> targets) {
         List<String> urls = Lists.newArrayList();
         for (int pageNum = 1; pageNum <= pageLimit; pageNum++) {
             urls.add(url + pageNum);
         }
         this.urls = urls;
-        this.selectors = selectors;
+        this.targets = targets;
     }
 
-    Set<T> crawl() throws IOException {
+    public Set<T> crawl() throws IOException {
         Set<T> response = Sets.newHashSet();
         for (String url: urls) {
             Document doc = Jsoup.connect(url).get();
-            String cssQuery = StringUtils.join(selectors, " ");
+            String cssQuery = StringUtils.join(targets, " ");
             Elements elements = doc.select(cssQuery);
             response.addAll(parse(elements));
         }

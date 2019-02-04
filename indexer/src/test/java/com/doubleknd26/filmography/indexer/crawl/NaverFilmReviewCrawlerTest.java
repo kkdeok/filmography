@@ -16,5 +16,6 @@ public class NaverFilmReviewCrawlerTest {
     public void testCrawl() throws IOException {
         NaverFilmReviewCrawler crawler = new NaverFilmReviewCrawler();
         Set response = crawler.crawl();
+        assertFalse(response.isEmpty());
     }
 }

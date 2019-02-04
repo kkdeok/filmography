@@ -1,8 +1,6 @@
 package com.doubleknd26.filmography.indexer.crawl;
 
-import com.doubleknd26.filmography.indexer.common.Genre;
-import com.doubleknd26.filmography.indexer.model.FilmInfo;
-import com.doubleknd26.filmography.indexer.model.Review;
+import com.doubleknd26.filmography.proto.FilmInfo;
 import com.google.common.collect.Sets;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,29 +22,19 @@ public class FilmInfoCrawler extends WebCrawler {
         super(URLS, TARGETS);
     }
 
-    // TODO: refactoring in progress
     @Override
     Set parse(Elements elements) {
         Set<FilmInfo> filmInfos = Sets.newHashSet();
         for (Element elem: elements) {
             String title = elem.select(".lst_dsc .tit a").text();
-//            String director =
             String ageLimit = elem.select(".lst_dsc .tit span").text();
-            String imgSrc = elem.select(".thumb a img").first().absUrl("src");
-            String aa = elem.select(".lst_dsc .info_txt1").html();
-//            long releaseTime;
-//            int runningTime;
-//            List<Review> reviews;
-
-
-//            Elements info = elem.select(".lst_dsc .info_txt1 dd");
-
-//            String director = elem.select(".lst_dsc .info_txt1 dd").get(2).text();
-
-            System.out.println(aa);
-            System.out.println(elem.html());
-//            filmInfos.add(elem.text());
-//            filmInfos.add(new FilmInfo())
+            String imagePath = elem.select(".thumb a img").first().absUrl("src");
+            FilmInfo filmInfo = FilmInfo.newBuilder()
+                    .setTitle(title)
+                    .setAgeLimit(ageLimit)
+                    .setImagePath(imagePath)
+                    .build();
+            filmInfos.add(filmInfo);
         }
         return filmInfos;
     }

@@ -7,7 +7,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 /**
- * Created by coupang on 2019-01-26.
+ * Created by Kideok Kim on 2019-01-26.
  */
 public class FilmInfoCrawlerTest {
 
@@ -15,6 +15,6 @@ public class FilmInfoCrawlerTest {
     public void testCrawl() throws Exception {
         FilmInfoCrawler crawler = new FilmInfoCrawler();
         Set response = crawler.crawl();
+        assertFalse(response.isEmpty());
     }
-
 }

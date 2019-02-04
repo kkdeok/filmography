@@ -1,7 +1,7 @@
 package com.doubleknd26.filmography.indexer.crawl;
 
-import com.doubleknd26.filmography.indexer.common.Source;
-import com.doubleknd26.filmography.indexer.model.Review;
+import com.doubleknd26.filmography.proto.Review;
+import com.doubleknd26.filmography.proto.Source;
 import com.google.common.collect.Sets;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -34,11 +34,18 @@ public class NaverFilmReviewCrawler extends WebCrawler {
         Set<Review> reviews = Sets.newHashSet();
         for (Element elem: elements) {
             String title = elem.select(".title .movie").text();
-            String content = elem.select(".title").first().ownText();
+            String comment = elem.select(".title").first().ownText();
             int grade = Integer.parseInt(elem.select(".point").text());
             String date = String.valueOf(elem.select(".num").last().ownText());
             long timestamp = convert(date);
-            reviews.add(new Review(title, content, grade, timestamp, Source.NAVER));
+            Review review = Review.newBuilder()
+                    .setTitle(title)
+                    .setComment(comment)
+                    .setGrade(grade)
+                    .setTimestamp(timestamp)
+                    .setSource(Source.NAVER)
+                    .build();
+            reviews.add(review);
         }
         return reviews;
     }

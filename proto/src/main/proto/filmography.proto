@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.doubleknd26.filmography.proto";
+
+
+enum Source {
+    TEST = 0;
+    NAVER = 1;
+}
+
+message Review {
+    string title = 1;
+    string url = 2;
+    float grade = 3;
+    string comment = 4;
+    int64 timestamp = 5;
+    Source source = 99;
+}
+
+message FilmInfo {
+    string title = 1;
+    string ageLimit = 2;
+    string imagePath = 3;
+    float avgGrade = 4;
+    repeated Review reviews = 5;
+}

@@ -63,12 +63,12 @@ public class FilmographyIndexer {
     }
 
     private SparkSession prepareSpark() {
-        SparkSession.Builder builder = SparkSession.builder()
-                .appName(this.getClass().getName());
+        SparkSession.Builder builder = SparkSession.builder();
         if (isLocal) {
             builder.master("local[*]");
         }
         return builder
+                .appName(this.getClass().getName())
                 .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
                 .config("spark.kryo.registrator", KryoRegistratorWrapper.class.getCanonicalName())
                 .getOrCreate();

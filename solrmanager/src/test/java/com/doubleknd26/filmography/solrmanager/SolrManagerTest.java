@@ -19,7 +19,7 @@ import java.io.IOException;
 import static org.junit.Assert.*;
 
 /**
- * Created by coupang on 2019-02-04.
+ * Created by Kideok Kim on 2019-02-04.
  */
 public class SolrManagerTest {
     private EmbeddedSolrServer server;

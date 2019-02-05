@@ -6,6 +6,7 @@ import com.doubleknd26.filmography.proto.Review;
 import com.doubleknd26.filmography.proto.Source;
 
 import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrInputDocument;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
@@ -43,10 +44,11 @@ public class FilmographyTransformerTest {
                 createReview("test3", 4)));
         JavaRDD<FilmInfo> filmInfoRdd =  jsc.parallelize(Arrays.asList(
                 createFilmInfo("test1"),
-                createFilmInfo("test2")));
+                createFilmInfo("test2"),
+                createFilmInfo("test5")));
 
         FilmographyTransformer transformer = new FilmographyTransformer();
-        JavaRDD<SolrDocument> response = transformer.transform(filmInfoRdd, reviewRdd);
+        JavaRDD<SolrInputDocument> response = transformer.transform(filmInfoRdd, reviewRdd);
 
         assertEquals(2, response.count());
     }

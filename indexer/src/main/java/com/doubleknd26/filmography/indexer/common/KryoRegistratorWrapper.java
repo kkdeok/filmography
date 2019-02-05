@@ -6,8 +6,11 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.esotericsoftware.kryo.serializers.JavaSerializer;
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.Parser;
+import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.servlet.SolrRequestParsers;
 import org.apache.spark.serializer.KryoRegistrator;
 
 import java.lang.reflect.Method;
@@ -20,6 +23,7 @@ public class KryoRegistratorWrapper implements KryoRegistrator {
     public void registerClasses(Kryo kryo) {
         kryo.register(FilmInfo.class, new ProtobufSerializer());
         kryo.register(Review.class, new ProtobufSerializer());
+        kryo.register(SolrInputDocument.class, new JavaSerializer());
     }
 
     public class ProtobufSerializer<T extends AbstractMessage> extends Serializer<T> {

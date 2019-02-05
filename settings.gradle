@@ -2,4 +2,5 @@ rootProject.name = 'filmography'
 include 'indexer'
 include 'proto'
 include 'utils'
+include 'solrmanager'
 

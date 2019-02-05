@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.doubleknd26.filmography.solrmanager'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven {
+        url "http://maven.restlet.com"
+    }
+}
+
+def solrVersion = '7.6.0'
+
+dependencies {
+    compile group: 'org.apache.solr', name: 'solr-solrj', version: solrVersion
+    compile ("org.apache.solr:solr-core:${solrVersion}")
+    testCompile ("org.apache.solr:solr-test-framework:${solrVersion}")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

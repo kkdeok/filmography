@@ -1,0 +1,27 @@
+<schema name="example" version="1.5">
+    <fields>
+        <!-- parent documents -->
+        <field name="_root_" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+        <field name="ageLimit" type="string" indexed="true" stored="true" multiValued="false"/>
+        <field name="imagePath" type="string" indexed="false" stored="true" multiValued="false"/>
+        <field name="avgGrade" type="float" indexed="false" stored="true" multiValued="false"/>
+
+        <!-- parent and child documents-->
+        <field name="title" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+
+        <!-- child documents -->
+        <field name="url" type="string" indexed="false" stored="true" required="false" multiValued="false" />
+        <field name="grade" type="float" indexed="false" stored="true" required="false" multiValued="false" />
+        <field name="comment" type="string" indexed="true" stored="true" required="false" multiValued="false" />
+        <field name="timestamp" type="long" indexed="false" stored="false" required="false" multiValued="false"/>
+        <field name="source" type="string" indexed="false" stored="false" required="false" multiValued="false"/>
+    </fields>
+
+    <uniqueKey>_root_</uniqueKey>
+
+    <types>
+        <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+        <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    </types>
+</schema>

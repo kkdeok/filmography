@@ -15,3 +15,4 @@ metastore_db/
 venv/
 **/classes
 .env
+**/solrhome

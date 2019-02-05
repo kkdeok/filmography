@@ -38,7 +38,7 @@ public class FilmographyIndexerTest {
         indexer.isLocal = true;
 
         SolrInputDocument doc = new SolrInputDocument();
-        doc.addField("title", "testvalue");
+        doc.addField("title", "test value");
 
         LongAccumulator indexedDocCount = ss.sparkContext()
                 .longAccumulator("indexed-doc-count");

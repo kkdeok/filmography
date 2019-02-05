@@ -38,7 +38,7 @@ public class SolrManagerTest {
         SolrInputDocument doc = new SolrInputDocument();
         doc.addField(testField, testValue);
 
-        SolrManager solrManager = new SolrManager();
+        SolrManager solrManager = SolrManager.getInstance();
         EmbeddedSolrServer server = solrManager.setupSolrServer(0);
 
         server.add(doc);

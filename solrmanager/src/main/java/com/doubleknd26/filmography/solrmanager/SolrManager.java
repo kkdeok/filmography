@@ -1,5 +1,6 @@
 package com.doubleknd26.filmography.solrmanager;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,7 +22,7 @@ import java.util.Map;
 public class SolrManager implements Serializable {
     private static final Logger logger = LogManager.getLogger();
     private static final String configSet = "filmography";
-    private static SolrManager solrManager;
+    private static SolrManager solrManager = null;
 
     private CoreContainer container;
     private final String solrConfig;
@@ -35,11 +37,12 @@ public class SolrManager implements Serializable {
         }
     }
 
-    public SolrManager() {
+    private SolrManager() {
         this.solrConfig = getSolrConfigPath();
         this.solrHome = getSolrHomePath();
         System.setProperty("solr.solr.home", solrHome);
         try {
+            FileUtils.deleteDirectory(new File(solrHome));
             createSolrXml();
             copySolrConfig();
         } catch (Exception e) {
@@ -49,14 +52,29 @@ public class SolrManager implements Serializable {
         container.load();
     }
 
+    public List<EmbeddedSolrServer> getServers() {
+        List<EmbeddedSolrServer> servers = Lists.newArrayList();
+        CoreContainer container = new CoreContainer(solrHome);
+        container.load();
+        for (SolrCore core: container.getCores()) {
+            servers.add(new EmbeddedSolrServer(core));
+        }
+        return servers;
+    }
+
     public EmbeddedSolrServer setupSolrServer(int shardNum) throws IOException {
         synchronized (SolrManager.class) {
             String shardName = getShardName(shardNum);
             if (container.isLoaded(shardName)) {
-                container.unload(shardName);
+                container.unload(shardName, true, true, true);
             }
             FileUtils.deleteDirectory(
                     new File(solrHome + getShardName(shardNum)));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             Map<String, String> params = Maps.newHashMap();
             params.put("configSet", configSet);

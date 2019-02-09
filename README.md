@@ -5,18 +5,21 @@
 
 <p align="center">
     <h1 align="center">Filmography</h1>
-    <p align="center">A simple search engine for searching running films.</p>
+    <p align="center">A simple search engine for searching running films in Korea.</p>
 </p>
 <br>
 
 ### Introduction
-This is a simple search engine for searching running films in Korea. The word simple means that this application is only run on the local machine for now. 
+This application is a simple search engine for searching running films in Korea.
+The word *simple* means that It is only run on the local machine for now based on a purpose that understanding how solr search engine works.
 
-### Library
-- Solr
-- Spark
+### Demo
 
-The crawling standard.
-  - target source: NAVER Corp, DAUM Corp. Google Corp.
-  - target movie: current running movie only.
-  - target data: review data and grading data.
+### Getting started
+
+### Components
+- **Apache Solr Cloud**: run solr cloud on the local machine.
+- **Crawler**: crawls websites to get running film information.
+- **Transformer**: transform crawled dataset to index document.
+- **Loader**: Load index document to solr cloud.
+

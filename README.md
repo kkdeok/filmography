@@ -1,4 +1,3 @@
-<br>
 <p align="center">
     <h1 align="center">Filmography</h1>
     <p align="center">A simple search engine for searching running films.</p>

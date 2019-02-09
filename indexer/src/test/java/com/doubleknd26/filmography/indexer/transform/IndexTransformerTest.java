@@ -5,7 +5,6 @@ import com.doubleknd26.filmography.proto.FilmInfo;
 import com.doubleknd26.filmography.proto.Review;
 import com.doubleknd26.filmography.proto.Source;
 
-import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -20,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Kideok Kim on 2018-12-09.
  */
-public class FilmographyTransformerTest {
+public class IndexTransformerTest {
     private SparkSession ss;
     private JavaSparkContext jsc;
 
@@ -47,7 +46,7 @@ public class FilmographyTransformerTest {
                 createFilmInfo("test2"),
                 createFilmInfo("test5")));
 
-        FilmographyTransformer transformer = new FilmographyTransformer();
+        IndexTransformer transformer = new IndexTransformer();
         JavaRDD<SolrInputDocument> response = transformer.transform(filmInfoRdd, reviewRdd);
 
         assertEquals(2, response.count());

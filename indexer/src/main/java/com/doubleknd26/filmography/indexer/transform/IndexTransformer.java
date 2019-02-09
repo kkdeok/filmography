@@ -5,7 +5,6 @@ import com.doubleknd26.filmography.proto.Review;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
-import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -14,7 +13,6 @@ import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
 import scala.Tuple2;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,7 +24,7 @@ import static com.doubleknd26.filmography.utils.ProtoUtils.protoToJson;
 /**
  * Created by Kideok Kim on 2018-12-08.
  */
-public class FilmographyTransformer implements Serializable {
+public class IndexTransformer implements Serializable {
 
     public JavaRDD<SolrInputDocument> transform(JavaRDD<FilmInfo> filmInfoRdd, JavaRDD<Review> reviewRdd) {
         JavaPairRDD<String, Iterable<Review>> transformedReview = transformReview(reviewRdd);
@@ -42,7 +40,10 @@ public class FilmographyTransformer implements Serializable {
                             int reviewCount = 0;
                             float gradeSum = 0f;
                             for (Review review : tuple._2()) {
-                                builder.addReviews(review);
+                                Review compactedReview = review.toBuilder()
+                                        .clearTitle()
+                                        .build();
+                                builder.addReviews(compactedReview);
                                 reviewCount++;
                                 gradeSum += review.getGrade();
                             }
@@ -69,19 +70,13 @@ public class FilmographyTransformer implements Serializable {
         while (it.hasNext()) {
             Map.Entry<String, JsonNode> entry = it.next();
             String fieldName = entry.getKey();
-            if (!fieldName.equals("reviews")) {
-                Object fieldValue = convertFieldValue(entry.getValue());
-                doc.setField(fieldName, fieldValue);
-                if (fieldName.equals("title")) {
-                    doc.setField("_root_", fieldValue);
-                }
-            } else {
-                List<SolrInputDocument> childDocs = Lists.newArrayList();
-                Iterator<JsonNode> childIter = entry.getValue().elements();
-                while (childIter.hasNext()) {
-                    childDocs.add(generateSolrDoc(childIter.next()));
-                }
-                doc.addChildDocuments(childDocs);
+            Object fieldValue = convertFieldValue(entry.getValue());
+            doc.setField(fieldName, fieldValue);
+            if (fieldName.equals("title")) {
+                // Here we use a default solr cloud and it inferences solr schema
+                // based on the solr input document. Even if it inferences schema,
+                // it use a 'id' field as a unique key. So, we added a 'id' field.
+                doc.setField("id", fieldValue);
             }
         }
         return doc;
@@ -107,6 +102,8 @@ public class FilmographyTransformer implements Serializable {
                 list.add(convertFieldValue(it.next()));
             }
             return list;
+        } else if (node.isObject()) {
+            return node.toString();
         } else {
             throw new RuntimeException("Unhandled field type: " + node.toString());
         }

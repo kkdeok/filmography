@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class NaverFilmReviewCrawler extends WebCrawler {
     private static final String URL = "https://movie.naver.com/movie/point/af/list.nhn?target=after&page=";
     private static final List<String> TARGET = Arrays.asList("tbody", "tr");
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yy.MM.dd");
-    private static final int DEFAULT_PAGE_LIMIT = 1;
+    private static final int DEFAULT_PAGE_LIMIT = 100;
 
     public NaverFilmReviewCrawler() {
         this(DEFAULT_PAGE_LIMIT);
@@ -37,7 +38,7 @@ public class NaverFilmReviewCrawler extends WebCrawler {
             String comment = elem.select(".title").first().ownText();
             int grade = Integer.parseInt(elem.select(".point").text());
             String date = String.valueOf(elem.select(".num").last().ownText());
-            long timestamp = convert(date);
+            String timestamp = convert(date);
             Review review = Review.newBuilder()
                     .setTitle(title)
                     .setComment(comment)
@@ -50,11 +51,11 @@ public class NaverFilmReviewCrawler extends WebCrawler {
         return reviews;
     }
 
-    private long convert(String date) {
+    private String convert(String date) {
         try {
-            return formatter.parse(date).toInstant().toEpochMilli();
+            return formatter.parse(date).toString();
         } catch (ParseException e) {
-            return 0L;
+            return Instant.now().toString();
         }
     }
 }

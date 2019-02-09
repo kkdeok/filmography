@@ -14,7 +14,7 @@ message Review {
     string url = 2;
     float grade = 3;
     string comment = 4;
-    int64 timestamp = 5;
+    string timestamp = 5;
     Source source = 99;
 }
 

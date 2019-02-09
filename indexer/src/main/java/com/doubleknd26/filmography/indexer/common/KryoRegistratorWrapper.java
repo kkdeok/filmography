@@ -10,7 +10,6 @@ import com.esotericsoftware.kryo.serializers.JavaSerializer;
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.Parser;
 import org.apache.solr.common.SolrInputDocument;
-import org.apache.solr.servlet.SolrRequestParsers;
 import org.apache.spark.serializer.KryoRegistrator;
 
 import java.lang.reflect.Method;

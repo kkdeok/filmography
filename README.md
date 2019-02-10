@@ -3,9 +3,11 @@
  <a href="https://spark.apache.org/releases/spark-release-2-1-0.html"><img src="https://img.shields.io/badge/apache--spark-v2.1.0-brightgreen.svg" alt="apache-spark status"></a>
 </p>
 
+<br>
+
 <p align="center">
-    <h1 align="center">Filmography</h1>
-    <p align="center">A simple search engine for searching running films in Korea.</p>
+    <h1>Filmography</h1>
+    <p>A simple search engine for searching running films in Korea.</p>
 </p>
 <br>
 

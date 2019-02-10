@@ -89,10 +89,5 @@ public class FilmographyIndexer implements Serializable {
         JCommander commander = new JCommander(indexer);
         commander.parse(args);
         indexer.start();
-
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            // Use stdout here since the logger may have been reset by its JVM shutdown hook.
-            System.out.println("*** Filmography shut down");
-        }));
     }
 }

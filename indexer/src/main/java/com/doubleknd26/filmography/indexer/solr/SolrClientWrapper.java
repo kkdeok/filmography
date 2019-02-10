@@ -18,8 +18,8 @@ public class SolrClientWrapper {
     private static final Logger logger = LogManager.getLogger();
     private static final List<String> baseUrls = Arrays.asList("http://localhost:8983/solr/");
     private static final String COLLECTION_NAME = "filmography";
-    private static final int NUM_SHARDS = 2;
-    private static final int NUM_REPLICAS = 2;
+    private static final int NUM_SHARDS = 1;
+    private static final int NUM_REPLICAS = 1;
     private static SolrClientWrapper instance = null;
     private final SolrClient client;
     private String collection;
@@ -56,7 +56,7 @@ public class SolrClientWrapper {
     private void createCollection() throws Exception {
         CollectionAdminRequest.Create request = CollectionAdminRequest
                 .createCollection(collection, NUM_SHARDS, NUM_REPLICAS)
-                .setMaxShardsPerNode(2);
+                .setMaxShardsPerNode(1);
         CollectionAdminResponse response = request.process(client);
         if (!response.isSuccess()) {
             throw new RuntimeException(response.getErrorMessages().toString());

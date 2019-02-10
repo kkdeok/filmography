@@ -4,11 +4,8 @@
 </p>
 
 <br>
-
-<p align="center">
-    <h1>Filmography</h1>
-    <p>A simple search engine for searching running films in Korea.</p>
-</p>
+<h1 align="center">Filmography</h1>
+<p align="center">A simple search engine for searching running films in Korea.</p>
 <br>
 
 ### Introduction

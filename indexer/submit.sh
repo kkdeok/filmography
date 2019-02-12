@@ -25,9 +25,9 @@ if [ "$BUILD" == "1" ]; then
 fi
 
 if [ "$INSTALL_SOLR" == "1" ]; then
-  (cd /tmp && curl -O http://mirror.navercorp.com/apache/lucene/solr/7.6.0/solr-7.6.0.tgz)
-  (cd /tmp && tar -zxvf solr-7.6.0.tgz)
-  SOLR_HOME=/tmp/solr-7.6.0/
+  (cd /tmp && curl -O http://mirror.navercorp.com/apache/lucene/solr/7.7.0/solr-7.7.0.tgz)
+  (cd /tmp && tar -zxvf solr-7.7.0.tgz)
+  SOLR_HOME=/tmp/solr-7.7.0/
   (cd $SOLR_HOME && ./bin/solr start -cloud -noprompt -f )
   [ $? -eq 0 ] || exit 1
 fi

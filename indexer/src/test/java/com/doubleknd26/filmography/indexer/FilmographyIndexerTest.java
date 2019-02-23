@@ -1,5 +1,6 @@
 package com.doubleknd26.filmography.indexer;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.io.Serializable;
  */
 public class FilmographyIndexerTest implements Serializable {
 
-    @Test
+    @Ignore
     public void testStart() throws Exception {
         FilmographyIndexer indexer = new FilmographyIndexer();
         indexer.isLocal = true;

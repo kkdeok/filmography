@@ -52,7 +52,7 @@ public class FilmographyIndexer implements Serializable {
 
         logger.info("*** Indexed doc count: " + indexedDocCount.value());
         logger.info("*** Unindexed doc count: " + unindexedDocCount.value());
-        logger.info("*** Filmography is ready to be search. Let's search on solr.");
+        logger.info("*** Filmography is ready to search. Let's search using Solr.");
         logger.info("*** please visit: http://localhost:8983/solr/#/filmography/query");
     }
 

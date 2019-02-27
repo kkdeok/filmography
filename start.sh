@@ -20,7 +20,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ "$BUILD" == "1" ]; then
-  gradle clean shadowJar
+  (cd indexer && gradle clean shadowJar)
   [ $? -eq 0 ] || exit 1
 fi
 
@@ -33,7 +33,7 @@ if [ "$INSTALL_SOLR" == "1" ]; then
 fi
 
 IS_LOCAL=true
-JAR_FILE="build/libs/filmography-indexer-1.0-SNAPSHOT-all.jar"
+JAR_FILE="indexer/build/libs/filmography-indexer-1.0-SNAPSHOT-all.jar"
 
 RUN_COMMAND="java -jar ${JAR_FILE} --local ${IS_LOCAL}"
 

@@ -25,6 +25,7 @@ if [ "$BUILD" == "1" ]; then
 fi
 
 if [ "$INSTALL_SOLR" == "1" ]; then
+  echo "Download solr..."
   (cd /tmp && curl -O http://mirror.apache-kr.org/lucene/solr/7.7.0/solr-7.7.0.tgz)
   (cd /tmp && tar -zxvf solr-7.7.0.tgz)
   SOLR_HOME=/tmp/solr-7.7.0/

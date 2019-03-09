@@ -2,11 +2,18 @@ package com.doubleknd26.filmography.indexer.solr;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.plugins.util.PluginBuilder;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.client.solrj.request.CollectionAdminRequest;
 import org.apache.solr.client.solrj.response.CollectionAdminResponse;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.core.*;
+import org.apache.solr.handler.RequestHandlerUtils;
+import org.apache.solr.handler.UpdateRequestHandler;
+import org.apache.solr.handler.UpdateRequestHandlerApi;
+import org.apache.solr.request.SolrRequestHandler;
+import org.apache.solr.update.CommitUpdateCommand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,6 +60,16 @@ public class SolrClientWrapper {
         }
     }
 
+    private void initializeCollection() throws Exception {
+        CollectionAdminRequest.Delete request = CollectionAdminRequest
+                .deleteCollection(collection);
+        CollectionAdminResponse response = request.process(client);
+        if (!response.isSuccess()) {
+            throw new RuntimeException(response.getErrorMessages().toString());
+        }
+        createCollection();
+    }
+
     private void createCollection() throws Exception {
         CollectionAdminRequest.Create request = CollectionAdminRequest
                 .createCollection(collection, NUM_SHARDS, NUM_REPLICAS)
@@ -62,16 +79,6 @@ public class SolrClientWrapper {
             throw new RuntimeException(response.getErrorMessages().toString());
         }
         logger.info("collection {} is created. ", collection);
-    }
-
-    private void initializeCollection() throws Exception {
-        CollectionAdminRequest.Delete request = CollectionAdminRequest
-                .deleteCollection(collection);
-        CollectionAdminResponse response = request.process(client);
-        if (!response.isSuccess()) {
-            throw new RuntimeException(response.getErrorMessages().toString());
-        }
-        createCollection();
     }
 
     private boolean isCollectionExist() throws Exception {

@@ -29,14 +29,13 @@ cd filmography
 [main] INFO  com.doubleknd26.filmography.indexer.FilmographyIndexer - *** please visit: http://localhost:8983/solr/#/filmography/query
 ```
 
-visit [here](http://localhost:8983/solr/#/filmography/query) to see below solr admin. You can click _Execute Query_ button to see default search result.
+Visit [here](http://localhost:8983/solr/#/filmography/query) to see below solr admin. You can click **Execute Query** button to see default search result.
 ![solr admin](image/solr_admin.png) 
 
-After search, execute below command to stop filmography gracefully.
+Execute below command to stop filmography gracefully.
 ```
 cd filmography
 ./stop.sh
-
 Sending stop command to Solr running on port 8983 ... waiting up to 180 seconds to allow Jetty process 70232 to stop gracefully.
 ```
 

@@ -24,10 +24,16 @@ dependencies {
 
     compile ("org.apache.solr:solr-solrj:${solrVersion}") {
         exclude group: "com.fasterxml.jackson.core"
+        exclude group: 'com.fasterxml.jackson.module'
     }
     compile ("org.apache.solr:solr-core:${solrVersion}") {
         exclude group: "com.fasterxml.jackson.core"
+        exclude group: 'com.fasterxml.jackson.module'
     }
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.11', version:jacksonVersion
 
     // to avoid Incompatible Jackson version error in unit test
     testCompile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion

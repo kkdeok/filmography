@@ -12,11 +12,33 @@
 This application is a simple search engine for searching running films in Korea.
 The word *simple* means that It is only run on the local machine for now based on a purpose that understanding how solr search engine works.
 
-### Demo
-![](sample.gif)
-
-
 ### Getting started
+This is a way to start quickly in your local.
+```
+git clone https://github.com/doubleknd26/filmography.git
+cd filmography
+./start.sh -b
+
+...
+
+[main] INFO  com.doubleknd26.filmography.indexer.FilmographyIndexer - *** Started Filmography indexer.
+[Executor task launch worker-0] INFO  com.doubleknd26.filmography.indexer.solr.SolrClientWrapper - collection filmography is created. 
+[main] INFO  com.doubleknd26.filmography.indexer.FilmographyIndexer - *** Indexed doc count: 35
+[main] INFO  com.doubleknd26.filmography.indexer.FilmographyIndexer - *** Unindexed doc count: 0
+[main] INFO  com.doubleknd26.filmography.indexer.FilmographyIndexer - *** Filmography is ready to search. Let's search using Solr.
+[main] INFO  com.doubleknd26.filmography.indexer.FilmographyIndexer - *** please visit: http://localhost:8983/solr/#/filmography/query
+```
+
+visit [here](http://localhost:8983/solr/#/filmography/query) to see below solr admin. You can click _Execute Query_ button to see default search result.
+![solr admin](image/solr_admin.png) 
+
+After search, execute below command to stop filmography gracefully.
+```
+cd filmography
+./stop.sh
+
+Sending stop command to Solr running on port 8983 ... waiting up to 180 seconds to allow Jetty process 70232 to stop gracefully.
+```
 
 ### Components
 - **Apache Solr Cloud**: run solr cloud on the local machine.

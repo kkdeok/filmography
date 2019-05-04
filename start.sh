@@ -24,14 +24,11 @@ if [ "$BUILD" == "1" ]; then
   [ $? -eq 0 ] || exit 1
 fi
 
-if [ "$INSTALL_SOLR" == "1" ]; then
-  echo "Download solr..."
-  (cd ~ && curl -O http://archive.apache.org/dist/lucene/solr/7.6.0/solr-7.6.0.tgz)
-  (cd ~ && tar -zxvf solr-7.6.0.tgz)
-  SOLR_HOME=~/solr-7.6.0/
-  (cd $SOLR_HOME && ./bin/solr start -cloud -noprompt -verbose )
-  [ $? -eq 0 ] || exit 1
-fi
+echo "Download solr..."
+(cd ~ && curl -O http://archive.apache.org/dist/lucene/solr/7.6.0/solr-7.6.0.tgz)
+(cd ~ && tar -zxvf solr-7.6.0.tgz)
+SOLR_HOME=~/solr-7.6.0/
+(cd $SOLR_HOME && ./bin/solr start -cloud -noprompt -verbose )
 
 IS_LOCAL=true
 JAR_FILE="indexer/build/libs/filmography-indexer-1.0-SNAPSHOT.jar"

@@ -10,7 +10,7 @@
 
 ### Introduction
 This application is a simple search engine for searching running films in Korea.
-The word *simple* means that It is only run on the local machine for now based on a purpose that understanding how solr search engine works.
+The word 'simple' means that It is only run on the local machine for now based on a purpose that understanding how solr search engine works.
 
 <br>
 

@@ -12,6 +12,8 @@
 This application is a simple search engine for searching running films in Korea.
 The word *simple* means that It is only run on the local machine for now based on a purpose that understanding how solr search engine works.
 
+<br>
+
 ### Getting started
 This is a way to start quickly in your local.
 ```
@@ -38,6 +40,8 @@ cd filmography
 ./stop.sh
 Sending stop command to Solr running on port 8983 ... waiting up to 180 seconds to allow Jetty process 70232 to stop gracefully.
 ```
+
+<br>
 
 ### Components
 - **Apache Solr Cloud**: run solr cloud on the local machine.

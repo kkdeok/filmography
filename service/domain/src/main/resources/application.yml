@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+  data:
+    solr:
+      host: http://localhost:8983/solr
+
+---
+spring:
+   profiles: production
+   data:
+     solr:
+       host:
+       zk-host:
